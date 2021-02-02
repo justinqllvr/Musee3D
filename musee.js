@@ -18,7 +18,7 @@ var createScene = function () {
     camera.speed = 0.5;
     camera.applyGravity = true;
     camera.checkCollisions = true;
-    camera.angularSensibility = 5000;
+    camera.angularSensibility = 15000;
     camera.position = new BABYLON.Vector3(-1, 2, 80);
 
     var hitbox = BABYLON.Mesh.CreateSphere("hitbox", 16, 1, scene);
