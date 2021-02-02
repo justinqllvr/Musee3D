@@ -1,0 +1,169 @@
+@font-face {
+    font-family: 'augustus';
+    src: url('Assets/AUGUSTUS.TTF') format('ttf'),
+}
+
+@font-face {
+    font-family: 'ebrima';
+    src: url('Assets/ebrima.ttf') format('ttf'),
+}
+
+h1 {
+    font-family: 'augustus';
+    justify-content: center;
+    font-size: 90px;
+    letter-spacing: 3px;
+    margin: 0px;
+    margin-top: 50px;
+    animation: comeInTitle 2s;
+}
+
+h2 {
+    margin: 0px;
+    text-align: center;
+    letter-spacing: 10px;
+}
+
+p{
+    margin: 0px;
+}
+
+h2, p, li{
+    font-family: 'ebrima';
+    font-weight: normal;
+}
+
+span {
+    font-weight: bold;
+}
+
+body {
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0C0C0C;
+    color : #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../img/illustration_3.png');
+    background-size: cover;
+}
+
+img {
+    width: 5vw;
+}
+
+
+
+.play-button {
+    width: 6vw;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.Discovers {
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'ebrima';
+    width: 60%;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.credits {
+    margin-top: 50px;
+    width: 65%;
+    text-align: center;
+}
+
+.credits h2 {
+    font-size: 20px;
+}
+
+.credits p {
+    font-size: 15px;
+}
+
+#bold {
+    font-weight: bold;
+}
+
+ul { 
+    margin: 0px; 
+    padding: 0; 
+    width: 50vw;
+    list-style: none; 
+    display: table;
+    width: 600px;
+    text-align: center;
+    letter-spacing: 4px;
+  }
+  li { 
+    display: table-cell; 
+    position: relative; 
+    padding: 30px 0;
+  }
+  li a{
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: 5px;
+    position: relative;
+  }
+  li a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  li a:hover:after { 
+    width: 100%; 
+    left: 0; 
+  }
+
+  .text-discovers {
+      font-weight: bold;
+  }
+
+  .Discovers a {
+      text-decoration: none;
+  }
+  ul, .Discovers, img, p,h2 {
+    animation: startDisplayNone 2s;
+  }
+  @keyframes comeInTitle {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+  }
+
+    @keyframes startDisplayNone {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+
+  
