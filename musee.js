@@ -278,7 +278,7 @@ var createScene = function () {
     giovanniBattista.material = giovanniBattistaMAT;
     
     var interrogatoireGaleriens = BABYLON.MeshBuilder.CreatePlane("interrogatoireGaleriens", { height: 6.96, width:  8.58, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    interrogatoireGaleriens.position = new BABYLON.Vector3(-16, 3.55, -20.);
+    interrogatoireGaleriens.position = new BABYLON.Vector3(-16, 3.55, -20.16);
     interrogatoireGaleriens.rotation.y = -3.14;
     var interrogatoireGaleriensMAT = new BABYLON.StandardMaterial("interrogatoireGaleriensMAT", scene);
     interrogatoireGaleriensMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/interrogatoire_galeriens.png", scene, false);
