@@ -78,7 +78,7 @@ var createScene = function () {
     fransHals.material = fransHalsMAT;
 
     var anonymeFlamand = BABYLON.MeshBuilder.CreatePlane("anonymeFlamand", { height: 6.54, width: 5.4, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    anonymeFlamand.position = new BABYLON.Vector3(-1, 3.5, 25.7);
+    anonymeFlamand.position = new BABYLON.Vector3(-1, 3.5, 29.1);
     anonymeFlamand.rotation.y = 3.14;
     var anonymeFlamandMAT = new BABYLON.StandardMaterial("anonymeFlamandMAT", scene);
     anonymeFlamandMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/main/anonymeflamand.jpg", scene, false);
@@ -272,7 +272,7 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museev11.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museev12.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
