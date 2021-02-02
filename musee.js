@@ -21,6 +21,7 @@ var createScene = function () {
     camera.angularSensibility = 15000;
     camera.position = new BABYLON.Vector3(-1, 2, 80);
 
+
     var hitbox = BABYLON.Mesh.CreateSphere("hitbox", 16, 1, scene);
     var mat_hitbox = new BABYLON.StandardMaterial("hitbox", scene);
     mat_hitbox.alpha = 0;
@@ -186,12 +187,7 @@ var createScene = function () {
     janBrueghelMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jan_brueghel.jpg", scene, false);
     janBrueghel.material = janBrueghelMAT;
 
-
-
-
-
-
-
+    //lumières
     var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
     lumJeuExpo.intensity = 2;
     lumJeuExpo.diffuse = new BABYLON.Color3(0.5, 0.5, 0);
