@@ -186,6 +186,27 @@ var createScene = function () {
     janBrueghelMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jan_brueghel.jpg", scene, false);
     janBrueghel.material = janBrueghelMAT;
 
+    var giuseppeVermiglio = BABYLON.MeshBuilder.CreatePlane("giuseppeVermiglio", { height: 10.9, width: 7.6, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    giuseppeVermiglio.position = new BABYLON.Vector3(-24.6, 5.5, 49.5);
+    giuseppeVermiglio.rotation.y = -1.57;
+    var giuseppeVermiglioMAT = new BABYLON.StandardMaterial("giuseppeVermiglioMAT", scene);
+    giuseppeVermiglioMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/giuseppe_vermiglio.jpg", scene, false);
+    giuseppeVermiglio.material = giuseppeVermiglioMAT;
+
+    var aubinVouet = BABYLON.MeshBuilder.CreatePlane("aubinVouet", { height: 7.05, width: 5.37, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    aubinVouet.position = new BABYLON.Vector3(22.2, 5.5, 49.5);
+    aubinVouet.rotation.y = 1.57;
+    var aubinVouetMAT = new BABYLON.StandardMaterial("aubinVouetMAT", scene);
+    aubinVouetMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/aubin_vouet.jpg", scene, false);
+    aubinVouet.material = aubinVouetMAT;
+
+    var giovanniDo = BABYLON.MeshBuilder.CreatePlane("giovanniDo", { height: 4.98, width: 6.42, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    giovanniDo.position = new BABYLON.Vector3(11.3, 3.5, 32.7);
+    giovanniDo.rotation.y = -1.57;
+    var giovanniDoMAT = new BABYLON.StandardMaterial("giovanniDoMAT", scene);
+    giovanniDoMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/giovanni_do.jpg", scene, false);
+    giovanniDo.material = giovanniDoMAT;
+
 
 
 
