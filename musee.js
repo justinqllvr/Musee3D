@@ -138,6 +138,58 @@ var createScene = function () {
 
 
 
+    // Peintures secondaires (sans interaction)
+
+    var hansClot = BABYLON.MeshBuilder.CreatePlane("hansClot", { height: 5.4, width: 14.52, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    hansClot.position = new BABYLON.Vector3(-1, 5, 83.9);
+    var hansClotMAT = new BABYLON.StandardMaterial("hansClotMAT", scene);
+    hansClotMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/hans_clot.jpg", scene, false);
+    hansClot.material = hansClotMAT;
+
+    var saintJust = BABYLON.MeshBuilder.CreatePlane("saintJust", { height: 11.46, width: 8.04, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    saintJust.position = new BABYLON.Vector3(20, 5.8, 83.9);
+    var saintJustMAT = new BABYLON.StandardMaterial("saintJustMAT", scene);
+    saintJustMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/saint_just.jpg", scene, false);
+    saintJust.material = saintJustMAT;
+
+    var tizianoVecellio = BABYLON.MeshBuilder.CreatePlane("tizianoVecellio", { height: 11.58, width: 8.58, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    tizianoVecellio.position = new BABYLON.Vector3(-22, 5.8, 83.9);
+    var tizianoVecellioMAT = new BABYLON.StandardMaterial("tizianoVecellioMAT", scene);
+    tizianoVecellioMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/tiziano_vecellio.jpg", scene, false);
+    tizianoVecellio.material = tizianoVecellioMAT;
+
+    var giorgioVasari = BABYLON.MeshBuilder.CreatePlane("giorgioVasari", { height: 6.24, width: 4.74, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    giorgioVasari.position = new BABYLON.Vector3(31.6, 5.8, 75);
+    giorgioVasari.rotation.y = 1.57;
+    var giorgioVasariMAT = new BABYLON.StandardMaterial("giorgioVasariMAT", scene);
+    giorgioVasariMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/giorgio_vasari.jpg", scene, false);
+    giorgioVasari.material = giorgioVasariMAT;
+
+    var paoloCaliari = BABYLON.MeshBuilder.CreatePlane("paoloCaliari", { height: 4.62, width: 5.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    paoloCaliari.position = new BABYLON.Vector3(-34, 5.8, 75);
+    paoloCaliari.rotation.y = -1.57;
+    var paoloCaliariMAT = new BABYLON.StandardMaterial("paoloCaliariMAT", scene);
+    paoloCaliariMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/paolo_caliari.jpg", scene, false);
+    paoloCaliari.material = paoloCaliariMAT;
+
+    var laviniaFontana = BABYLON.MeshBuilder.CreatePlane("laviniaFontana", { height: 7.14, width: 6.6, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    laviniaFontana.position = new BABYLON.Vector3(26, 6, 63.1);
+    laviniaFontana.rotation.y = 2.5;
+    var laviniaFontanaMAT = new BABYLON.StandardMaterial("laviniaFontanaMAT", scene);
+    laviniaFontanaMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/lavinia_fontana.jpg", scene, false);
+    laviniaFontana.material = laviniaFontanaMAT;
+
+    var janBrueghel = BABYLON.MeshBuilder.CreatePlane("janBrueghel", { height: 2.4, width: 3, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    janBrueghel.position = new BABYLON.Vector3(-29.3, 4, 63.8);
+    janBrueghel.rotation.y = 0.65;
+    var janBrueghelMAT = new BABYLON.StandardMaterial("janBrueghelMAT", scene);
+    janBrueghelMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jan_brueghel.jpg", scene, false);
+    janBrueghel.material = janBrueghelMAT;
+
+
+
+
+
 
 
     var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
