@@ -5,7 +5,7 @@ var engine = new BABYLON.Engine(canvas, true);
 var createScene = function () {
 
     var scene = new BABYLON.Scene(engine); //On crée une nouvelle scène
-    scene.clearColor = new BABYLON.Color3(0.8, 0.2, 0.2); //Couleur par défaut quand il n'y a pas d'élement (soit la couleur au fond)
+    scene.clearColor = new BABYLON.Color3(255, 255, 255); //Couleur par défaut quand il n'y a pas d'élement (soit la couleur au fond)
 
     //Création d'une caméra avec les paramètres : string nom_camera, Vector3 position, scene
     var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 3, -15), scene);
@@ -62,7 +62,6 @@ var createScene = function () {
     mat_sol.bumpTexture.vScale = 16.0;
     ground.checkCollisions = true;
     ground.material = mat_sol;
-
 
 
 
@@ -145,16 +144,16 @@ var createScene = function () {
     lumJeuExpo.intensity = 2;
     lumJeuExpo.diffuse = new BABYLON.Color3(0.5, 0.5, 0);
 
-    var skybox = BABYLON.Mesh.CreateBox("skybox", 300, scene);
-    var skyboxmat = new BABYLON.StandardMaterial("m_skybox", scene);
-    skyboxmat.backFaceCulling = false;
-    skyboxmat.disableLightning = true;
-    skyboxmat.diffuseColor = new BABYLON.Color3(0, 0, 0);
-    skyboxmat.specularColor = new BABYLON.Color3(0, 0, 0);
-    skyboxmat.reflectionTexture = new BABYLON.CubeTexture("texture/skybox/skybox", scene);
-    skyboxmat.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-    skybox.material = skyboxmat;
-    skybox.infiniteDistance = true;
+    // var skybox = BABYLON.Mesh.CreateBox("skybox", 300, scene);
+    // var skyboxmat = new BABYLON.StandardMaterial("m_skybox", scene);
+    // skyboxmat.backFaceCulling = false;
+    // skyboxmat.disableLightning = true;
+    // skyboxmat.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    // skyboxmat.specularColor = new BABYLON.Color3(0, 0, 0);
+    // skyboxmat.reflectionTexture = new BABYLON.CubeTexture("texture/skybox/skybox", scene);
+    // skyboxmat.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+    // skybox.material = skyboxmat;
+    // skybox.infiniteDistance = true;
 
     // var sphereModal = BABYLON.Mesh.CreateSphere("sphereModal", 16, 14, scene);
     // sphereModal.position = new BABYLON.Vector3(0, 0, 15);
