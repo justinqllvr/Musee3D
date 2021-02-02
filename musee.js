@@ -79,7 +79,7 @@ var createScene = function () {
     fransHals.material = fransHalsMAT;
 
     var anonymeFlamand = BABYLON.MeshBuilder.CreatePlane("anonymeFlamand", { height: 6.54, width: 5.4, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    anonymeFlamand.position = new BABYLON.Vector3(-1, 3.5, 25.7);
+    anonymeFlamand.position = new BABYLON.Vector3(-1, 3.5, 29.1);
     anonymeFlamand.rotation.y = 3.14;
     var anonymeFlamandMAT = new BABYLON.StandardMaterial("anonymeFlamandMAT", scene);
     anonymeFlamandMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/main/anonymeflamand.jpg", scene, false);
@@ -187,6 +187,109 @@ var createScene = function () {
     janBrueghelMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jan_brueghel.jpg", scene, false);
     janBrueghel.material = janBrueghelMAT;
 
+    var giuseppeVermiglio = BABYLON.MeshBuilder.CreatePlane("giuseppeVermiglio", { height: 10.9, width: 7.6, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    giuseppeVermiglio.position = new BABYLON.Vector3(-24.6, 5.5, 49.5);
+    giuseppeVermiglio.rotation.y = -1.57;
+    var giuseppeVermiglioMAT = new BABYLON.StandardMaterial("giuseppeVermiglioMAT", scene);
+    giuseppeVermiglioMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/giuseppe_vermiglio.jpg", scene, false);
+    giuseppeVermiglio.material = giuseppeVermiglioMAT;
+
+    var aubinVouet = BABYLON.MeshBuilder.CreatePlane("aubinVouet", { height: 7.05, width: 5.37, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    aubinVouet.position = new BABYLON.Vector3(22.2, 5.5, 49.5);
+    aubinVouet.rotation.y = 1.57;
+    var aubinVouetMAT = new BABYLON.StandardMaterial("aubinVouetMAT", scene);
+    aubinVouetMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/aubin_vouet.jpg", scene, false);
+    aubinVouet.material = aubinVouetMAT;
+
+    var giovanniDo = BABYLON.MeshBuilder.CreatePlane("giovanniDo", { height: 4.98, width: 6.42, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    giovanniDo.position = new BABYLON.Vector3(11.3, 3.5, 32.7);
+    giovanniDo.rotation.y = -1.57;
+    var giovanniDoMAT = new BABYLON.StandardMaterial("giovanniDoMAT", scene);
+    giovanniDoMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/giovanni_do.jpg", scene, false);
+    giovanniDo.material = giovanniDoMAT;
+
+
+    
+
+
+    //Partie Justin
+    var PierreLacour = BABYLON.MeshBuilder.CreatePlane("PierreLacour", { height: 8.28, width: 13.6, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    PierreLacour.position = new BABYLON.Vector3(7.2, 5, -76);
+    PierreLacour.rotation.y = 1.57;
+    var PierreLacourMAT = new BABYLON.StandardMaterial("PierreLacourMAT", scene);
+    PierreLacourMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/pierre_lacour.jpg", scene, false);
+    PierreLacour.material = PierreLacourMAT;
+
+    var jbGreuze = BABYLON.MeshBuilder.CreatePlane("jbGreuze", { height: 2.742, width: 2.25, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    jbGreuze.position = new BABYLON.Vector3(-17, 5, -76);
+    jbGreuze.rotation.y = 3.14;
+    var jbGreuzeMAT = new BABYLON.StandardMaterial("jbGreuzeMAT", scene);
+    jbGreuzeMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jb_greuze.jpg", scene, false);
+    jbGreuze.material = jbGreuzeMAT;
+
+    var henriHorace = BABYLON.MeshBuilder.CreatePlane("henriHorace", { height: 4.83, width: 6.06, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    henriHorace.position = new BABYLON.Vector3(10, 5, -57.5);
+    henriHorace.rotation.y = -1.57;
+    var henriHoraceMAT = new BABYLON.StandardMaterial("henriHoraceMAT", scene);
+    henriHoraceMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/henri_horace.jpg", scene, false);
+    henriHorace.material = henriHoraceMAT;
+
+
+    var JeanRestout = BABYLON.MeshBuilder.CreatePlane("JeanRestout", { height: 11, width: 7.35, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    JeanRestout.position = new BABYLON.Vector3(-1, 5.75, -66.6);
+    JeanRestout.rotation.y = 3.14;
+    var JeanRestoutMAT = new BABYLON.StandardMaterial("JeanRestoutMAT", scene);
+    JeanRestoutMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jean_restout.jpg", scene, false);
+    JeanRestout.material = JeanRestoutMAT;
+
+    var jmNatier = BABYLON.MeshBuilder.CreatePlane("jmNatier", { height: 3.6, width: 3, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    jmNatier.position = new BABYLON.Vector3(-15, 5, -48.1);
+    jmNatier.rotation.y = 3.14;
+    var jmNatierMAT = new BABYLON.StandardMaterial("jmNatierMAT", scene);
+    jmNatierMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jm_nattier.jpg", scene, false);
+    jmNatier.material = jmNatierMAT;
+
+    var gabrielAllegrain = BABYLON.MeshBuilder.CreatePlane("gabrielAllegrain", { height: 7.74, width: 9.73, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    gabrielAllegrain.position = new BABYLON.Vector3(-24.5, 5, -35);
+    gabrielAllegrain.rotation.y = -1.57;
+    var gabrielAllegrainMAT = new BABYLON.StandardMaterial("gabrielAllegrainMAT", scene);
+    gabrielAllegrainMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/gabriel_allegrain.jpg", scene, false);
+    gabrielAllegrain.material = gabrielAllegrainMAT;
+
+    var westAmandier = BABYLON.MeshBuilder.CreatePlane("westAmandier", { height: 5.58, width: 2.16, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    westAmandier.position = new BABYLON.Vector3(22, 5, -36);
+    westAmandier.rotation.y = 1.57;
+    var westAmandierMAT = new BABYLON.StandardMaterial("westAmandierMAT", scene);
+    westAmandierMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/west_amandier.png", scene, false);
+    westAmandier.material = westAmandierMAT;
+
+    var westLevres = BABYLON.MeshBuilder.CreatePlane("westLevres", { height: 5.58, width: 2.16, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    westLevres.position = new BABYLON.Vector3(22, 5, -33);
+    westLevres.rotation.y = 1.57;
+    var westLevresMAT = new BABYLON.StandardMaterial("westLevresMAT", scene);
+    westLevresMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/west_levres.png", scene, false);
+    westLevres.material = westLevresMAT;
+
+    var giovanniBattista = BABYLON.MeshBuilder.CreatePlane("giovanniBattista", { height: 4.08, width:  7.8, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    giovanniBattista.position = new BABYLON.Vector3(12, 5, -48.1);
+    giovanniBattista.rotation.y = 3.14;
+    var giovanniBattistaMAT = new BABYLON.StandardMaterial("giovanniBattistaMAT", scene);
+    giovanniBattistaMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/giovanni_battista.jpg", scene, false);
+    giovanniBattista.material = giovanniBattistaMAT;
+    
+    var interrogatoireGaleriens = BABYLON.MeshBuilder.CreatePlane("interrogatoireGaleriens", { height: 6.96, width:  8.58, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    interrogatoireGaleriens.position = new BABYLON.Vector3(-16, 3.55, -20.);
+    interrogatoireGaleriens.rotation.y = -3.14;
+    var interrogatoireGaleriensMAT = new BABYLON.StandardMaterial("interrogatoireGaleriensMAT", scene);
+    interrogatoireGaleriensMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/interrogatoire_galeriens.png", scene, false);
+    interrogatoireGaleriens.material = interrogatoireGaleriensMAT;
+    
+    var embarquementGaleriencs = BABYLON.MeshBuilder.CreatePlane("embarquementGaleriencs", { height: 6.96, width:  8.58, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    embarquementGaleriencs.position = new BABYLON.Vector3(15, 3.55, -20.15);
+    embarquementGaleriencs.rotation.y = -3.14;
+    var embarquementGaleriencsMAT = new BABYLON.StandardMaterial("embarquementGaleriencsMAT", scene);
+    embarquementGaleriencsMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/embarquement_galeriens.png", scene, false);
+    embarquementGaleriencs.material = embarquementGaleriencsMAT;
     //lumières
     var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
     lumJeuExpo.intensity = 2;
@@ -247,7 +350,7 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museev11.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museev12.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
