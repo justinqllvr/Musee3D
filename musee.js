@@ -17,6 +17,7 @@ var createScene = function () {
     camera.position = new BABYLON.Vector3(-1, 2, 80);
 
 
+
     var hitbox = BABYLON.Mesh.CreateSphere("hitbox", 16, 1, scene);
     var mat_hitbox = new BABYLON.StandardMaterial("hitbox", scene);
     mat_hitbox.alpha = 0;
@@ -333,6 +334,35 @@ var createScene = function () {
     janDavidsz.rotation.y = -1.57;
     var janDavidszMAT = new BABYLON.StandardMaterial("janDavidszMAT", scene);
     janDavidszMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jan_davidsz.jpg", scene, false);
+    janDavidsz.material = janDavidszMAT;
+
+    var tobie = BABYLON.MeshBuilder.CreatePlane("tobie", { height:   7.68, width:  10.02, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    tobie.position = new BABYLON.Vector3(-24.5, 5, -60);
+    tobie.rotation.y = 1.57;
+    var tobieMAT = new BABYLON.StandardMaterial("tobieMAT", scene);
+    tobieMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/tobie.jpg", scene, false);
+    tobie.material = tobieMAT;
+
+    var renaudArmide = BABYLON.MeshBuilder.CreatePlane("renaudArmide", { height: 9.66, width: 6.84, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    renaudArmide.position = new BABYLON.Vector3(22, 5.5, 13);
+    renaudArmide.rotation.y = 1.57;
+    var renaudArmideMAT = new BABYLON.StandardMaterial("renaudArmideMAT", scene);
+    renaudArmideMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/renaud_armide.jpg", scene, false);
+    renaudArmide.material = renaudArmideMAT;
+
+    var disputeDesPhilosophes = BABYLON.MeshBuilder.CreatePlane("disputeDesPhilosophes", { height: 7.0, width: 10.3, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    disputeDesPhilosophes.position = new BABYLON.Vector3(14.55, 3.55, 13.05);
+    disputeDesPhilosophes.rotation.y = 1.57;
+    var disputeDesPhilosophesMAT = new BABYLON.StandardMaterial("disputeDesPhilosophesMAT", scene);
+    disputeDesPhilosophesMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/dispute_des_philosophes.png", scene, false);
+    disputeDesPhilosophes.material = disputeDesPhilosophesMAT;
+
+    var disputeDestheologiens = BABYLON.MeshBuilder.CreatePlane("disputeDestheologiens", { height: 7.0, width: 10.3, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    disputeDestheologiens.position = new BABYLON.Vector3(-24.5, 4, 13.05);
+    disputeDestheologiens.rotation.y = -1.57;
+    var disputeDestheologiensMAT = new BABYLON.StandardMaterial("disputeDestheologiensMAT", scene);
+    disputeDestheologiensMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/dispute_des_theologiens.png", scene, false);
+    disputeDestheologiens.material = disputeDestheologiensMAT;
     janDavidsz.material = pieterFranszMAT;
     
     //lumières
@@ -358,6 +388,19 @@ var createScene = function () {
     });
     sonInteraction1.attachToMesh(fransHals);
 
+     //Interaction 2
+     var zoneInteraction2 = BABYLON.Mesh.CreateSphere("musicsphere", 20, 7, scene);
+     zoneInteraction2.material = zoneInteraction2MAT;
+     zoneInteraction2.position = new BABYLON.Vector3(-17, 3.5, 32.5);
+     var zoneInteraction2MAT = new BABYLON.StandardMaterial("zoneInteraction2MAT", scene);
+     zoneInteraction2MAT.diffuseColor = BABYLON.Color3.Purple();
+     zoneInteraction2MAT.backFaceCulling = false;
+     zoneInteraction2MAT.alpha = 0.3;
+ 
+     var sonInteraction2 = new BABYLON.Sound("mePerdonnas", "sound/Welcome.mp3", scene,
+         null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
+
+     sonInteraction2.attachToMesh(hendrickTerBrugghen);
 
     
     var islocked = false;
@@ -405,7 +448,9 @@ var createScene = function () {
 
     var isShading = false;
     var canPlaySoundCounter = 0;
+    var stopPlaySoundCounter = 0;
 
+   
 
 
     loader.onFinish = function () {
@@ -426,6 +471,7 @@ var createScene = function () {
             //     sphere3.setEnabled(false);
             //     isShading = false;
             // }
+
             canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
             if (canPlaySound && canPlaySoundCounter == 0) {
                 canPlaySoundCounter++;
@@ -450,6 +496,18 @@ var createScene = function () {
                 setTimeout(function() {
                     canControl = true;
                 }, 7000);
+            }
+
+            stopSound = hitbox.intersectsMesh(zoneInteraction2, false);
+            if (stopSound && stopPlaySoundCounter == 0) {
+                stopPlaySoundCounter++;
+            } else if (stopSound && stopPlaySoundCounter == 1) {
+                zoneInteraction2.position.y = 500;
+                sonInteraction2.stop();
+                gsap.to(camera.position, {duration: 1, x: -20, z: 32.5});
+                gsap.to(camera.target, {duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
             }
             
             if (canControl) {
