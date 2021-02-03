@@ -1,6 +1,7 @@
 var canDisplay = false;
 var canvas = document.getElementById("musee");
 var engine = new BABYLON.Engine(canvas, true);
+var canControl = true;
 
 var createScene = function () {
 
@@ -10,15 +11,8 @@ var createScene = function () {
     //Création d'une caméra avec les paramètres : string nom_camera, Vector3 position, scene
     var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 3, -15), scene);
     camera.setTarget(new BABYLON.Vector3(0, 0, -70)); //On fait regarder la caméra vers l'origine de la scène.
-    camera.attachControl(canvas, false); //On attache les contrôles de la scène via le canvas qu'on a crée tout à l'heure dans musee.html
-    camera.keysLeft = [81, 37]; //Q et <-
-    camera.keysUp = [90, 38]; //Z et Flèche du haut
-    camera.keysRight = [68, 39]; //D et ->
-    camera.keysDown = [83, 40]; //S et flèche du bas
-    camera.speed = 0.5;
     camera.applyGravity = true;
     camera.checkCollisions = true;
-    camera.angularSensibility = 15000;
     camera.position = new BABYLON.Vector3(-1, 2, 80);
 
 
@@ -35,22 +29,6 @@ var createScene = function () {
     // sphere3.position = new BABYLON.Vector3(0, 3, 0);
     // var mat_sphere3 = new BABYLON.StandardMaterial("sphere3", scene);
     // sphere3.material = mat_sphere3;
-
-    // var sphereSound = BABYLON.Mesh.CreateSphere("sphereSound", 20, 4, scene);
-    // sphereSound.position = new BABYLON.Vector3(50, 3, -30);
-
-    // var mePerdonas = new BABYLON.Sound("mePerdonas", "sound/sound.mp3", scene, null, {
-    //     loop: true,
-    //     autoplay: true,
-    //     maxDistance: 30
-    // });
-    // mePerdonas.attachToMesh(sphereSound);
-    // var zoneSound = BABYLON.MeshBuilder.CreatePlane("zoneSound", { height: 16, width: 16, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    // zoneSound.position = new BABYLON.Vector3(50, 0.2, -30);
-    // zoneSound.rotation.x = 1.57;
-    // var zoneSound_mat = new BABYLON.StandardMaterial("zoneSound_mat", scene);
-    // zoneSound_mat.alpha = 0.5;
-    // zoneSound.material = zoneSound_mat;
 
     //Paramètres : string nom, int longueur (axe x), int largeur (axe z), int sous-divisions, scene
     var ground = BABYLON.Mesh.CreateGround("ground1", 250, 250, 2, scene); //On crée un sol (petit certes) qui servira plus tard
@@ -290,35 +268,37 @@ var createScene = function () {
     var embarquementGaleriencsMAT = new BABYLON.StandardMaterial("embarquementGaleriencsMAT", scene);
     embarquementGaleriencsMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/embarquement_galeriens.png", scene, false);
     embarquementGaleriencs.material = embarquementGaleriencsMAT;
+
+
+
+
+
+
     //lumières
     var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
     lumJeuExpo.intensity = 2;
     lumJeuExpo.diffuse = new BABYLON.Color3(0.5, 0.5, 0);
 
-    // var skybox = BABYLON.Mesh.CreateBox("skybox", 300, scene);
-    // var skyboxmat = new BABYLON.StandardMaterial("m_skybox", scene);
-    // skyboxmat.backFaceCulling = false;
-    // skyboxmat.disableLightning = true;
-    // skyboxmat.diffuseColor = new BABYLON.Color3(0, 0, 0);
-    // skyboxmat.specularColor = new BABYLON.Color3(0, 0, 0);
-    // skyboxmat.reflectionTexture = new BABYLON.CubeTexture("texture/skybox/skybox", scene);
-    // skyboxmat.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-    // skybox.material = skyboxmat;
-    // skybox.infiniteDistance = true;
 
-    // var sphereModal = BABYLON.Mesh.CreateSphere("sphereModal", 16, 14, scene);
-    // sphereModal.position = new BABYLON.Vector3(0, 0, 15);
-    // var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
-    // invisibleMat.alpha = 0;
-    // sphereModal.material = invisibleMat;
 
-    // var sphereModalTest = BABYLON.MeshBuilder.CreatePlane("sphereModalTest", { height: 16, width: 16, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    // sphereModalTest.position = new BABYLON.Vector3(0, 0.2, 0);
-    // sphereModalTest.rotation.x = 1.57;
-    // var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
-    // invisibleMat.alpha = 0.5;
-    // sphereModalTest.material = invisibleMat;
 
+    // Interaction 1
+    var zoneInteraction1 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction1", { height: 3, width: 60, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneInteraction1.position = new BABYLON.Vector3(-1, 0.2, 63);
+    zoneInteraction1.rotation.x = 1.57;
+    var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
+    invisibleMat.alpha = 0;
+    zoneInteraction1.material = invisibleMat;
+
+    var sonInteraction1 = new BABYLON.Sound("sonInteraction1", "sound/welcome.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 30
+    });
+    sonInteraction1.attachToMesh(fransHals);
+
+
+    
     var islocked = false;
     scene.onPointerDown = function (evt) {
         if (!islocked) //Si la souris n'est pas bloqué...
@@ -364,6 +344,7 @@ var createScene = function () {
     loader.load();
 
     var isShading = false;
+    var canPlaySoundCounter = 0;
 
     loader.onFinish = function () {
         engine.runRenderLoop(function () {
@@ -383,6 +364,35 @@ var createScene = function () {
             //     sphere3.setEnabled(false);
             //     isShading = false;
             // }
+            canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
+            if (canPlaySound && canPlaySoundCounter == 0) {
+                canPlaySoundCounter++;
+            } else if (canPlaySound && canPlaySoundCounter == 1) {
+                zoneInteraction1.position.y = 50;
+                sonInteraction1.play();
+                gsap.to(camera.position, {duration: 2, delay: 1, x: -1, z: 70});
+                gsap.to(camera.target, {duration: 2, delay: 1, x: -1, y: 3.5, z: 63.8, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                canControl = false;
+            }
+            
+            if (canControl) {
+                camera.attachControl(canvas, false); //On attache les contrôles de la scène via le canvas qu'on a crée tout à l'heure dans musee.html
+                camera.keysLeft = [81, 37]; //Q et <-
+                camera.keysUp = [90, 38]; //Z et Flèche du haut
+                camera.keysRight = [68, 39]; //D et ->
+                camera.keysDown = [83, 40]; //S et flèche du bas
+                camera.speed = 0.5;
+                camera.angularSensibility = 15000;
+            } else {
+                camera.detachControl(canvas);
+                camera.keysLeft = []; //Q et <-
+                camera.keysUp = []; //Z et Flèche du haut
+                camera.keysRight = []; //D et ->
+                camera.keysDown = []; //S et flèche du bas
+                camera.speed = 0;
+            }
             scene.render();
         });
     };
