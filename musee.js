@@ -387,6 +387,19 @@ var createScene = function () {
     });
     sonInteraction1.attachToMesh(fransHals);
 
+     //Interaction 2
+     var zoneInteraction2 = BABYLON.Mesh.CreateSphere("musicsphere", 20, 7, scene);
+     zoneInteraction2.material = zoneInteraction2MAT;
+     zoneInteraction2.position = new BABYLON.Vector3(-17, 3.5, 32.5);
+     var zoneInteraction2MAT = new BABYLON.StandardMaterial("zoneInteraction2MAT", scene);
+     zoneInteraction2MAT.diffuseColor = BABYLON.Color3.Purple();
+     zoneInteraction2MAT.backFaceCulling = false;
+     zoneInteraction2MAT.alpha = 0.3;
+ 
+     var sonInteraction2 = new BABYLON.Sound("mePerdonnas", "sound/Welcome.mp3", scene,
+         null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
+
+     sonInteraction2.attachToMesh(hendrickTerBrugghen);
 
     
     var islocked = false;
@@ -435,7 +448,9 @@ var createScene = function () {
 
     var isShading = false;
     var canPlaySoundCounter = 0;
+    var stopPlaySoundCounter = 0;
 
+   
 
 
     loader.onFinish = function () {
@@ -456,6 +471,7 @@ var createScene = function () {
             //     sphere3.setEnabled(false);
             //     isShading = false;
             // }
+
             canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
             if (canPlaySound && canPlaySoundCounter == 0) {
                 canPlaySoundCounter++;
@@ -467,6 +483,21 @@ var createScene = function () {
                     camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                 }});
                 canControl = false;
+                setTimeout(function() {
+                    canControl = true;
+                }, 4000);
+            }
+
+            stopSound = hitbox.intersectsMesh(zoneInteraction2, false);
+            if (stopSound && stopPlaySoundCounter == 0) {
+                stopPlaySoundCounter++;
+            } else if (stopSound && stopPlaySoundCounter == 1) {
+                zoneInteraction2.position.y = 500;
+                sonInteraction2.stop();
+                gsap.to(camera.position, {duration: 1, x: -20, z: 32.5});
+                gsap.to(camera.target, {duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
             }
             
             if (canControl) {
