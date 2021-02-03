@@ -96,7 +96,7 @@ canvas
 
 /* Modal bis*/
 .modalgui {
-    display: none; /* Hidden by default */
+    display: block; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -110,14 +110,10 @@ canvas
 }
 
 /* Modal Content */
-.modalgui-content {
+#modalgui-content {
     position: fixed;
-    bottom: 0;
+    bottom: -300px;
     width: 100%;
-    -webkit-animation-name: slideInInteraction;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideInInteraction;
-    animation-duration: 0.4s;
     background: white;
 }
 

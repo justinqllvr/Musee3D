@@ -13,6 +13,7 @@ var createScene = function () {
     camera.setTarget(new BABYLON.Vector3(0, 0, -70)); //On fait regarder la caméra vers l'origine de la scène.
     camera.applyGravity = true;
     camera.checkCollisions = true;
+    camera.attachControl(canvas, false);
     camera.position = new BABYLON.Vector3(-1, 2, 80);
 
 
@@ -23,7 +24,8 @@ var createScene = function () {
 
     //Paramètres : string nom, Vector3 orientation_lumière, scene
     var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene); //On crée une nouvelle lumière générale orientée vers le haut
-    light.intensity = 0.8; //On diminue un peu l'intensité de la lumière
+    light.intensity = 1; //On diminue un peu l'intensité de la lumière
+    // var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
 
     // var sphere3 = BABYLON.Mesh.CreateSphere("sphere3", 20, 4, scene);
     // sphere3.position = new BABYLON.Vector3(0, 3, 0);
@@ -40,6 +42,7 @@ var createScene = function () {
     mat_sol.bumpTexture.uScale = 16.0 * 1.5;
     mat_sol.bumpTexture.vScale = 16.0;
     ground.checkCollisions = true;
+    // ground.receiveShadows = true;
     ground.material = mat_sol;
 
 
@@ -388,14 +391,13 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museev12.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museev13.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
             m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
             m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
-            m.material = new BABYLON.StandardMaterial("salle", scene);
-            m.material.backFaceCulling = false;
+            shadowGenerator.getShadowMap().renderList.push(m);
         });
     };
 
@@ -430,11 +432,24 @@ var createScene = function () {
             } else if (canPlaySound && canPlaySoundCounter == 1) {
                 zoneInteraction1.position.y = 50;
                 sonInteraction1.play();
-                gsap.to(camera.position, {duration: 2, delay: 1, x: -1, z: 70});
-                gsap.to(camera.target, {duration: 2, delay: 1, x: -1, y: 3.5, z: 63.8, onUpdate: function() {
+                gsap.to(modalGui, {duration: 1, delay: 1, opacity: 1, bottom: 0});
+                gsap.to(camera.target, {duration: 1, delay: 1, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                gsap.to(camera.target, {duration: 1, delay: 2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                gsap.to(camera.position, {duration: 2, delay: 5, x: -1, z: 70});
+                gsap.to(camera.target, {duration: 2, delay: 5, x: -1, y: 3.5, z: 63.8, onUpdate: function() {
                     camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                 }});
                 canControl = false;
+                setTimeout(function() {
+                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                }, 7000);
+                setTimeout(function() {
+                    canControl = true;
+                }, 7000);
             }
             
             if (canControl) {
@@ -453,6 +468,7 @@ var createScene = function () {
                 camera.keysDown = []; //S et flèche du bas
                 camera.speed = 0;
             }
+
             scene.render();
         });
     };
@@ -485,5 +501,4 @@ window.addEventListener('resize', function () { engine.resize() });
 //         fenetreModal.style.display = "none";
 // }//Si on clique sur la partie sombre, la fenêtre modale se fermera.
 
-// var pressE = document.getElementById('texteGUI');
-// var guiMotion = document.getElementById('fenetreModal');
+var modalGui = document.getElementById('modalgui-content');
