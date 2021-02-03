@@ -20,7 +20,7 @@ var createScene = function () {
     camera.checkCollisions = true;
     camera.angularSensibility = 15000;
     // camera.position = new BABYLON.Vector3(-1, 2, 80);
-    camera.position = new BABYLON.Vector3(-1, 2, 10);
+    camera.position = new BABYLON.Vector3(-1, 2, 0);
 
 
     var hitbox = BABYLON.Mesh.CreateSphere("hitbox", 16, 1, scene);
@@ -353,7 +353,35 @@ var createScene = function () {
     janDavidsz.rotation.y = -1.57;
     var janDavidszMAT = new BABYLON.StandardMaterial("janDavidszMAT", scene);
     janDavidszMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jan_davidsz.jpg", scene, false);
-    janDavidsz.material = pieterFranszMAT;
+    janDavidsz.material = janDavidszMAT;
+
+    var tobie = BABYLON.MeshBuilder.CreatePlane("tobie", { height:   7.68, width:  10.02, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    tobie.position = new BABYLON.Vector3(-24.5, 5, -60);
+    tobie.rotation.y = 1.57;
+    var tobieMAT = new BABYLON.StandardMaterial("tobieMAT", scene);
+    tobieMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/tobie.jpg", scene, false);
+    tobie.material = tobieMAT;
+
+    var renaudArmide = BABYLON.MeshBuilder.CreatePlane("renaudArmide", { height: 9.66, width: 6.84, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    renaudArmide.position = new BABYLON.Vector3(22, 5.5, 13);
+    renaudArmide.rotation.y = 1.57;
+    var renaudArmideMAT = new BABYLON.StandardMaterial("renaudArmideMAT", scene);
+    renaudArmideMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/renaud_armide.jpg", scene, false);
+    renaudArmide.material = renaudArmideMAT;
+
+    var disputeDesPhilosophes = BABYLON.MeshBuilder.CreatePlane("disputeDesPhilosophes", { height: 7.0, width: 10.3, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    disputeDesPhilosophes.position = new BABYLON.Vector3(14.55, 3.55, 13.05);
+    disputeDesPhilosophes.rotation.y = 1.57;
+    var disputeDesPhilosophesMAT = new BABYLON.StandardMaterial("disputeDesPhilosophesMAT", scene);
+    disputeDesPhilosophesMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/dispute_des_philosophes.png", scene, false);
+    disputeDesPhilosophes.material = disputeDesPhilosophesMAT;
+
+    var disputeDestheologiens = BABYLON.MeshBuilder.CreatePlane("disputeDestheologiens", { height: 7.0, width: 10.3, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    disputeDestheologiens.position = new BABYLON.Vector3(-24.5, 4, 13.05);
+    disputeDestheologiens.rotation.y = -1.57;
+    var disputeDestheologiensMAT = new BABYLON.StandardMaterial("disputeDestheologiensMAT", scene);
+    disputeDestheologiensMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/dispute_des_theologiens.png", scene, false);
+    disputeDestheologiens.material = disputeDestheologiensMAT;
     //lumières
     var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
     lumJeuExpo.intensity = 2;
