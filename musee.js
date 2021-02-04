@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(1, 2, 80);
+    camera.position = new BABYLON.Vector3(-1, 2, 80);
 
 
 
@@ -359,11 +359,44 @@ var createScene = function () {
     disputeDestheologiens.material = disputeDestheologiensMAT;
     janDavidsz.material = pieterFranszMAT;
 
-    //lumières
-    var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
-    lumJeuExpo.intensity = 2;
-    lumJeuExpo.diffuse = new BABYLON.Color3(0.5, 0.5, 0);
 
+
+    // Vidéo d'introduction
+    var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/V2.mp4"], scene, false);
+    var videoIntroMAT = new BABYLON.StandardMaterial("mat", scene);
+    videoIntroMAT.diffuseTexture = videoIntroTexture;
+    videoIntroMAT.backFaceCulling = false;
+    videoIntroMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoIntroMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoIntro.material = videoIntroMAT;
+    videoIntro.position = new BABYLON.Vector3(-1, 5, 75);
+    videoIntro.rotation.y = 3.14;
+    videoIntroTexture.video.autoplay = true;
+    videoIntroTexture.video.loop = false;
+
+    var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var introFondMAT = new BABYLON.StandardMaterial("introFond", scene);
+    introFondMAT.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    introFondMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    introFond.material = introFondMAT;
+    introFond.position = new BABYLON.Vector3(-1, 5, 74);
+
+    canControl = false;
+    camera.position.y = 5;
+    camera.position.z = 84;
+    camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
+    gsap.to(introFondMAT, { duration: 1, delay: 40, alpha: 0});
+    gsap.to(videoIntroMAT, { duration: 1, delay: 40, alpha: 0});
+    gsap.to(camera.position, { duration: 1, delay: 40, x: -1, y: 2, z: 80 });
+    gsap.to(camera.target, {
+        duration: 1, delay: 40, x: 0, y: 0, z: -70, onUpdate: function () {
+            camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+        }
+    });
+    setTimeout(function() {
+        canControl = true;
+    }, 40000);
 
 
 
@@ -542,7 +575,7 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museev14.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museeV15.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
@@ -782,6 +815,9 @@ var createScene = function () {
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     canControl = true;
+                }, 5000);
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
             }
 

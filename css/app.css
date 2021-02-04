@@ -114,13 +114,13 @@ canvas
     position: fixed;
     bottom: -300px;
     width: 100%;
-    background: white;
+    background: black;
 }
 
 .modalgui-body {
 	padding: 2px 2px;
 	text-align: center;
-    color: coral;
+    color: white;
     font-family: 'Arial'; 
 }
 
