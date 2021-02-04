@@ -14,7 +14,8 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(-1, 2, -40);
+    camera.position = new BABYLON.Vector3(-1, 2, 80);
+
 
 
 
@@ -378,7 +379,7 @@ var createScene = function () {
     zoneInteraction1.position = new BABYLON.Vector3(-1, 0.2, 63);
     zoneInteraction1.rotation.x = 1.57;
     var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
-    invisibleMat.alpha = 0;
+    invisibleMat.alpha = 0.2;
     zoneInteraction1.material = invisibleMat;
 
     var sonInteraction1 = new BABYLON.Sound("sonInteraction1", "sound/Welcome.mp3", scene, null, {
@@ -426,6 +427,27 @@ var createScene = function () {
 
     sonInteraction4.attachToMesh(vanGoyen);
 
+    // Interaction 5 - Oiseau
+    var zoneInteraction5 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction5", { height: 15, width: 15, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneInteraction5.position = new BABYLON.Vector3(-12, 0.2, -13);
+    zoneInteraction5.rotation.x = 1.57;
+    zoneInteraction5.material = invisibleMat;
+
+    var oiseau = BABYLON.MeshBuilder.CreatePlane("oiseau", { height: 3.2, width: 4.6, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    oiseau.position = new BABYLON.Vector3(-20, 0.05, -13);
+    oiseau.rotation.x = 1.57;
+    oiseau.rotation.y = -1.57;
+    var oiseauMAT = new BABYLON.StandardMaterial("oiseauMAT", scene);
+    oiseauMAT.diffuseTexture = new BABYLON.Texture("texture/objects/oiseau.png", scene, false);
+    oiseau.material = oiseauMAT;
+
+    var sonInteraction5 = new BABYLON.Sound("sonInteraction5", "sound/Chute_pigeon.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 30
+    });
+    sonInteraction5.attachToMesh(oiseau);
+
     //Interaction 6 -  Eglise
     var zoneInteraction6 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
     zoneInteraction6.material = zoneInteraction2MAT;
@@ -452,7 +474,7 @@ var createScene = function () {
     videoVenusMat.diffuseTexture.video.loop = true;
 
     // sonInteraction7.attachToMesh(bakhuizen);
-
+    
 
 
 
@@ -503,10 +525,11 @@ var createScene = function () {
     var isShading = false;
     var canPlaySoundCounter = 0;
     var stopPlayLuthSoundCounter = 0;
+    var disappearPotCounter = 0;
     var stopPlayClocherSoundCounter = 0;
+    var canPlaySoundPigeonCounter = 0;
     var stopPlayTempeteSoundCounter = 0;
 
-    var disappearPotCounter = 0;
 
 
 
@@ -521,6 +544,8 @@ var createScene = function () {
             // else
             //     pressE.style.display = "none"
 
+
+            // Interaction 1
             canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
             if (canPlaySound && canPlaySoundCounter == 0) {
                 canPlaySoundCounter++;
@@ -553,6 +578,8 @@ var createScene = function () {
                 }, 7000);
             }
 
+
+            // Interaction 2
             stopSoundLuth = hitbox.intersectsMesh(zoneInteraction2, false);
             if (stopSoundLuth && stopPlayLuthSoundCounter == 0) {
                 stopPlayLuthSoundCounter++;
@@ -573,7 +600,35 @@ var createScene = function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
             }
+            
+            
+            // Interaction 3
+            canDisappearPot = hitbox.intersectsMesh(zoneInteraction3, false);
+            if (canDisappearPot && disappearPotCounter == 0) {
+                disappearPotCounter++;
+            } else if (canDisappearPot && disappearPotCounter == 1) {
+                zoneInteraction3.position.y = 50;
+                gsap.to(potDeFleursMAT, {duration: 2, delay: 2, alpha: 0, onComplete: function() {
+                    potDeFleurs.setEnabled(false);
+                }});
+                gsap.to(camera.target, {duration: 2, delay: 0, x: 5, y: 2.5, z: 5.1, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                canControl = false;
+                modalGuiText.innerHTML = "C'est moi ou ce pot vient de disparaître...";
+                gsap.to(modalGui, {duration: 1, delay: 4, opacity: 1, bottom: 0});
+                setTimeout(function() {
+                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                }, 7000);
+                setTimeout(function() {
+                    canControl = true;
+                }, 7000);
+            }
 
+
+
+            
+            // Interaction 4
             stopClocherSound = hitbox.intersectsMesh(zoneInteraction4, false);
             if (stopClocherSound && stopPlayClocherSoundCounter == 0) {
                 stopPlayClocherSoundCounter++;
@@ -583,15 +638,36 @@ var createScene = function () {
                 sonInteraction4.autoplay = false;
                 sonInteraction4.loop = false;
                 -14, 0, 10
-                gsap.to(camera.position, { duration: 1, x: -14, z: 15 });
-                gsap.to(camera.target, {
-                    duration: 1, x: -14, y: 5, z: -27, onUpdate: function () {
-                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                    }
-                });
-
+                gsap.to(camera.position, {duration: 1, x: -14, z: 15});
+                gsap.to(camera.target, {duration: 1, x: -14, y: 5, z: -27, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
             }
 
+            
+            // Interaction 5
+            canPlaySoundPigeon = hitbox.intersectsMesh(zoneInteraction5, false);
+            if (canPlaySoundPigeon && canPlaySoundPigeonCounter == 0) {
+                canPlaySoundPigeonCounter++;
+            } else if (canPlaySoundPigeon && canPlaySoundPigeonCounter == 1) {
+                zoneInteraction5.position.y = 50;
+                sonInteraction5.play();
+                gsap.to(camera.target, {duration: 2, delay: 1, x: -20, y: 0.05, z: -13, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                canControl = false;
+                modalGuiText.innerHTML = "Comment cet oiseau est-il arrivé ici ?";
+                gsap.to(modalGui, {duration: 1, delay: 3, opacity: 1, bottom: 0});
+                setTimeout(function() {
+                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                }, 7000);
+                setTimeout(function() {
+                    canControl = true;
+                }, 7000);
+            }
+
+            
+            // Interaction 6
             stopTempeteSound = hitbox.intersectsMesh(zoneInteraction6, false);
             if (stopTempeteSound && stopPlayTempeteSoundCounter == 0) {
                 stopPlayTempeteSoundCounter++;
@@ -613,33 +689,6 @@ var createScene = function () {
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
-            }
-
-            canDisappearPot = hitbox.intersectsMesh(zoneInteraction3, false);
-            if (canDisappearPot && disappearPotCounter == 0) {
-                disappearPotCounter++;
-            } else if (canDisappearPot && disappearPotCounter == 1) {
-                zoneInteraction3.position.y = 50;
-                gsap.to(potDeFleursMAT, {
-                    duration: 2, delay: 2, alpha: 0, onComplete: function () {
-                        potDeFleurs.setEnabled(false);
-                    }
-                });
-                gsap.to(camera.target, {
-                    duration: 2, delay: 0, x: 5, y: 2.5, z: 5.1, onUpdate: function () {
-                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                    }
-                });
-                canControl = false;
-                modalGuiText.innerHTML = "C'est moi ou ce pot vient de disparaître...";
-                gsap.to(modalGui, { duration: 1, delay: 4, opacity: 1, bottom: 0 });
-                setTimeout(function () {
-                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
-                }, 7000);
-                setTimeout(function () {
-                    canControl = true;
-                }, 7000);
-
             }
 
             if (canControl) {
