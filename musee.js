@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(1, 2, 80);
+    camera.position = new BABYLON.Vector3(1, 2, -40);
 
 
 
@@ -365,13 +365,48 @@ var createScene = function () {
     lumJeuExpo.diffuse = new BABYLON.Color3(0.5, 0.5, 0);
 
 
+    //barrières invisibles
 
+    
+    var zoneBarriere1 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere1", { height: 20, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneBarriere1.position = new BABYLON.Vector3(-1, 0.2, 22);
+    zoneBarriere1.rotation.x = 1.57;
+    var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
+    invisibleMat.alpha = 0.2;
+    zoneBarriere1.material = invisibleMat;
+    zoneBarriere1.checkCollisions = true;
+    zoneBarriere1.rotation.x = 3.14;
 
+    var zoneBarriere2 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere2", { height: 20, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneBarriere2.position = new BABYLON.Vector3(-1, 0.2, 4.9);
+    zoneBarriere2.rotation.x = 1.57;
+    var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
+    invisibleMat.alpha = 0.2;
+    zoneBarriere2.material = invisibleMat;
+    zoneBarriere2.checkCollisions = true;
+    zoneBarriere2.rotation.x = 3.14;
+
+    var zoneBarriere3 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere2", { height: 20, width: 55, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneBarriere3.position = new BABYLON.Vector3(-1, 0.2, -33);
+    zoneBarriere3.rotation.x = 1.57;
+    var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
+    invisibleMat.alpha = 0.2;
+    zoneBarriere3.material = invisibleMat;
+    zoneBarriere3.checkCollisions = true;
+    zoneBarriere3.rotation.x = 3.14;
+
+    var zoneBarriere4 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere2", { height: 20, width: 55, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneBarriere4.position = new BABYLON.Vector3(-1, 0.2, -48);
+    zoneBarriere4.rotation.x = 1.57;
+    var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
+    invisibleMat.alpha = 0.2;
+    zoneBarriere4.material = invisibleMat;
+    zoneBarriere4.checkCollisions = true;
+    zoneBarriere4.rotation.x = 3.14;
     // Interaction 1
     var zoneInteraction1 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction1", { height: 3, width: 60, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneInteraction1.position = new BABYLON.Vector3(-1, 0.2, 63);
     zoneInteraction1.rotation.x = 1.57;
-    var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
     invisibleMat.alpha = 0.2;
     zoneInteraction1.material = invisibleMat;
 
@@ -510,7 +545,6 @@ var createScene = function () {
 
 
 
-
     var islocked = false;
     scene.onPointerDown = function (evt) {
         if (!islocked) //Si la souris n'est pas bloqué...
@@ -621,6 +655,7 @@ var createScene = function () {
             } else if (stopSoundLuth && stopPlayLuthSoundCounter == 1) {
                 zoneInteraction2.position.y = 500;
                 sonInteraction2.stop();
+                zoneBarriere1.position.x = 150;
                 sonInteraction2.autoplay = false;
                 sonInteraction2.loop = false;
                 gsap.to(camera.position, { duration: 1, x: -20, z: 32.5 });
@@ -672,6 +707,7 @@ var createScene = function () {
             if (stopClocherSound && stopPlayClocherSoundCounter == 0) {
                 stopPlayClocherSoundCounter++;
             } else if (stopClocherSound && stopPlayClocherSoundCounter == 1) {
+                zoneBarriere2.position.x = 150;
                 zoneInteraction4.position.y = 500;
                 sonInteraction4.stop();
                 sonInteraction4.autoplay = false;
@@ -716,6 +752,7 @@ var createScene = function () {
                 stopPlayTempeteSoundCounter++;
             } else if (stopTempeteSound && stopPlayTempeteSoundCounter == 1) {
                 zoneInteraction6.position.y = 500;
+                zoneBarriere3.position.x = 150;
                 setTimeout(() => {
                     sonInteraction6.stop();
                     sonInteraction6.autoplay = false;
@@ -739,6 +776,7 @@ var createScene = function () {
             if (Playvenusvideo && playVenusVideoCounter == 0) {
                 playVenusVideoCounter++;
             } else if (Playvenusvideo && playVenusVideoCounter == 1) {
+                zoneBarriere4.position.x = 150;
                 zoneInteraction7.position.y = 500;
                 setTimeout(() => {
                     videoVenusTexture.video.play();
