@@ -498,37 +498,37 @@ var createScene = function () {
     loader.onFinish = function () {
         engine.runRenderLoop(function () {
             hitbox.position = new BABYLON.Vector3(camera.position.x, 0.2, camera.position.z);
-            // canDisplayMotion = hitbox.intersectsMesh(sphereModal, false);
-            // if ((canDisplayMotion) && guiMotion.style.display != "block") //Boucle pour savoir s'il faut afficher le texte pour dire qu'on peut interagir ou non
-            //     pressE.style.display = "block";
-            // else
-            //     pressE.style.display = "none"
+            canDisplayMotion = hitbox.intersectsMesh(sphereModal, false);
+            if ((canDisplayMotion) && guiMotion.style.display != "block") //Boucle pour savoir s'il faut afficher le texte pour dire qu'on peut interagir ou non
+                pressE.style.display = "block";
+            else
+                pressE.style.display = "none"
 
-            // canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
-            // if (canPlaySound && canPlaySoundCounter == 0) {
-            //     canPlaySoundCounter++;
-            // } else if (canPlaySound && canPlaySoundCounter == 1) {
-            //     zoneInteraction1.position.y = 50;
-            //     sonInteraction1.play();
-            //     gsap.to(modalGui, {duration: 1, delay: 1, opacity: 1, bottom: 0});
-            //     gsap.to(camera.target, {duration: 1, delay: 1, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function() {
-            //         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-            //     }});
-            //     gsap.to(camera.target, {duration: 1, delay: 2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function() {
-            //         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-            //     }});
-            //     gsap.to(camera.position, {duration: 2, delay: 5, x: -1, z: 70});
-            //     gsap.to(camera.target, {duration: 2, delay: 5, x: -1, y: 3.5, z: 63.8, onUpdate: function() {
-            //         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-            //     }});
-            //     canControl = false;
-            //     setTimeout(function() {
-            //         gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
-            //     }, 7000);
-            //     setTimeout(function() {
-            //         canControl = true;
-            //     }, 7000);
-            // }
+            canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
+            if (canPlaySound && canPlaySoundCounter == 0) {
+                canPlaySoundCounter++;
+            } else if (canPlaySound && canPlaySoundCounter == 1) {
+                zoneInteraction1.position.y = 50;
+                sonInteraction1.play();
+                gsap.to(modalGui, {duration: 1, delay: 1, opacity: 1, bottom: 0});
+                gsap.to(camera.target, {duration: 1, delay: 1, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                gsap.to(camera.target, {duration: 1, delay: 2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                gsap.to(camera.position, {duration: 2, delay: 5, x: -1, z: 70});
+                gsap.to(camera.target, {duration: 2, delay: 5, x: -1, y: 3.5, z: 63.8, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                canControl = false;
+                setTimeout(function() {
+                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                }, 7000);
+                setTimeout(function() {
+                    canControl = true;
+                }, 7000);
+            }
 
             stopSoundLuth = hitbox.intersectsMesh(zoneInteraction2, false);
             if (stopSoundLuth && stopPlayLuthSoundCounter == 0) {
@@ -542,6 +542,11 @@ var createScene = function () {
                 gsap.to(camera.target, {duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function() {
                     camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                 }});
+                modalGuiText.innerHTML = "Quelle toile magnifique... Mais d'où venait cette musique ?";
+                gsap.to(modalGui, {duration: 1, delay: 1, opacity: 1, bottom: 0});
+                setTimeout(function() {
+                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                }, 5000);
             }
 
             stopClocherLuth = hitbox.intersectsMesh(zoneInteraction4, false);
@@ -557,6 +562,7 @@ var createScene = function () {
                 gsap.to(camera.target, {duration: 1, x: -14, y: 5, z: -27, onUpdate: function() {
                     camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                 }});
+                
             }
 
             stopTempeteLuth = hitbox.intersectsMesh(zoneInteraction6, false);
