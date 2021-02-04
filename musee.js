@@ -437,6 +437,9 @@ var createScene = function () {
     zoneBarriere4.material = invisibleMat;
     zoneBarriere4.checkCollisions = true;
     zoneBarriere4.rotation.x = 3.14;
+
+
+
     // Interaction 1
     var zoneInteraction1 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction1", { height: 3, width: 60, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneInteraction1.position = new BABYLON.Vector3(-1, 0.2, 63);
@@ -459,6 +462,7 @@ var createScene = function () {
     zoneInteraction2MAT.diffuseColor = BABYLON.Color3.Purple();
     zoneInteraction2MAT.backFaceCulling = false;
     zoneInteraction2MAT.alpha = 0;
+    zoneInteraction2.material = zoneInteraction2MAT;
 
     var sonInteraction2 = new BABYLON.Sound("Luth", "sound/Luth.mp3", scene,
         null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
