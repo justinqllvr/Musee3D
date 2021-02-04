@@ -498,11 +498,11 @@ var createScene = function () {
     loader.onFinish = function () {
         engine.runRenderLoop(function () {
             hitbox.position = new BABYLON.Vector3(camera.position.x, 0.2, camera.position.z);
-            canDisplayMotion = hitbox.intersectsMesh(sphereModal, false);
-            if ((canDisplayMotion) && guiMotion.style.display != "block") //Boucle pour savoir s'il faut afficher le texte pour dire qu'on peut interagir ou non
-                pressE.style.display = "block";
-            else
-                pressE.style.display = "none"
+            // canDisplayMotion = hitbox.intersectsMesh(sphereModal, false);
+            // if ((canDisplayMotion) && guiMotion.style.display != "block") //Boucle pour savoir s'il faut afficher le texte pour dire qu'on peut interagir ou non
+            //     pressE.style.display = "block";
+            // else
+            //     pressE.style.display = "none"
 
             canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
             if (canPlaySound && canPlaySoundCounter == 0) {
