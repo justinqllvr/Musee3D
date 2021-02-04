@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(-1, 2, 80);
+    camera.position = new BABYLON.Vector3(1, 2, 80);
 
 
 
@@ -457,16 +457,34 @@ var createScene = function () {
     zoneInteraction7.position = new BABYLON.Vector3(-1, 0, -40);
 
     var videoVenus = BABYLON.MeshBuilder.CreatePlane("videoVenus", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var videoVenusMat = new BABYLON.StandardMaterial("vidFac", scene);
-    videoVenusMat.diffuseTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v1.mp4"], scene, false);
-    videoVenusMat.backFaceCulling = false;
-    videoVenusMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
-    videoVenusMat.specularColor = new BABYLON.Color3(0, 0, 0);
-    videoVenus.material = videoVenusMat;
-    videoVenus.position = new BABYLON.Vector3(-1, 5, -40);
-    videoVenusMat.diffuseTexture.video.loop = true;
+    var videoVenusTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/Venus_v2.mp4"], scene, false);
+    var videoVenusMAT = new BABYLON.StandardMaterial("mat", scene);
+    videoVenusMAT.diffuseTexture = videoVenusTexture;
+    videoVenusMAT.backFaceCulling = false;
+    videoVenusMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoVenusMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoVenus.material = videoVenusMAT;
+    videoVenus.position = new BABYLON.Vector3(-1, 5, 150);
+    videoVenusTexture.video.pause();
+    // videoVenusMat.opacityTexture = 0.3;
 
     // sonInteraction7.attachToMesh(bakhuizen);
+
+    //Interaction 9 -  Ganymède
+    var zoneInteraction9 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 15, scene);
+    zoneInteraction9.material = zoneInteraction2MAT;
+    zoneInteraction9.position = new BABYLON.Vector3(-1, 0, -80);
+
+    var videoGanymede = BABYLON.MeshBuilder.CreatePlane("videoVenus", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoGanymedeTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/Venus_v2.mp4"], scene, false);
+    var videoGanymedeMAT = new BABYLON.StandardMaterial("videoGanymedeMAT", scene);
+    videoGanymedeMAT.diffuseTexture = videoGanymedeTexture;
+    videoGanymedeMAT.backFaceCulling = false;
+    videoGanymedeMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoGanymedeMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoGanymede.material = videoGanymedeMAT;
+    videoGanymede.position = new BABYLON.Vector3(-1, 5, 150);
+    videoGanymedeTexture.video.pause();
 
     // Interaction 8 - Fleche
     var zoneInteraction8 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction8", { height: 20, width: 15, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
@@ -489,7 +507,7 @@ var createScene = function () {
         maxDistance: 30
     });
     sonInteraction8.attachToMesh(fleche);
-    
+
 
 
 
@@ -542,7 +560,10 @@ var createScene = function () {
     var stopPlayClocherSoundCounter = 0;
     var canPlaySoundPigeonCounter = 0;
     var stopPlayTempeteSoundCounter = 0;
+    var playVenusVideoCounter = 0;
+    var playGanymedeVideoCounter = 0;
     var canStrikeFlecheCounter = 0;
+
 
 
 
@@ -614,34 +635,38 @@ var createScene = function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
             }
-            
-            
+
+
             // Interaction 3
             canDisappearPot = hitbox.intersectsMesh(zoneInteraction3, false);
             if (canDisappearPot && disappearPotCounter == 0) {
                 disappearPotCounter++;
             } else if (canDisappearPot && disappearPotCounter == 1) {
                 zoneInteraction3.position.y = 50;
-                gsap.to(potDeFleursMAT, {duration: 2, delay: 2, alpha: 0, onComplete: function() {
-                    potDeFleurs.setEnabled(false);
-                }});
-                gsap.to(camera.target, {duration: 2, delay: 0, x: 5, y: 2.5, z: 5.1, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
+                gsap.to(potDeFleursMAT, {
+                    duration: 2, delay: 2, alpha: 0, onComplete: function () {
+                        potDeFleurs.setEnabled(false);
+                    }
+                });
+                gsap.to(camera.target, {
+                    duration: 2, delay: 0, x: 5, y: 2.5, z: 5.1, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
                 canControl = false;
                 modalGuiText.innerHTML = "C'est moi ou ce pot vient de disparaître...";
-                gsap.to(modalGui, {duration: 1, delay: 4, opacity: 1, bottom: 0});
-                setTimeout(function() {
-                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                gsap.to(modalGui, { duration: 1, delay: 4, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 7000);
-                setTimeout(function() {
+                setTimeout(function () {
                     canControl = true;
                 }, 7000);
             }
 
 
 
-            
+
             // Interaction 4
             stopClocherSound = hitbox.intersectsMesh(zoneInteraction4, false);
             if (stopClocherSound && stopPlayClocherSoundCounter == 0) {
@@ -652,13 +677,15 @@ var createScene = function () {
                 sonInteraction4.autoplay = false;
                 sonInteraction4.loop = false;
                 -14, 0, 10
-                gsap.to(camera.position, {duration: 1, x: -14, z: 15});
-                gsap.to(camera.target, {duration: 1, x: -14, y: 5, z: -27, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
+                gsap.to(camera.position, { duration: 1, x: -14, z: 15 });
+                gsap.to(camera.target, {
+                    duration: 1, x: -14, y: 5, z: -27, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
             }
 
-            
+
             // Interaction 5
             canPlaySoundPigeon = hitbox.intersectsMesh(zoneInteraction5, false);
             if (canPlaySoundPigeon && canPlaySoundPigeonCounter == 0) {
@@ -666,21 +693,23 @@ var createScene = function () {
             } else if (canPlaySoundPigeon && canPlaySoundPigeonCounter == 1) {
                 zoneInteraction5.position.y = 50;
                 sonInteraction5.play();
-                gsap.to(camera.target, {duration: 2, delay: 1, x: -20, y: 0.05, z: -13, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
+                gsap.to(camera.target, {
+                    duration: 2, delay: 1, x: -20, y: 0.05, z: -13, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
                 canControl = false;
                 modalGuiText.innerHTML = "Comment cet oiseau est-il arrivé ici ?";
-                gsap.to(modalGui, {duration: 1, delay: 3, opacity: 1, bottom: 0});
-                setTimeout(function() {
-                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                gsap.to(modalGui, { duration: 1, delay: 3, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 7000);
-                setTimeout(function() {
+                setTimeout(function () {
                     canControl = true;
                 }, 7000);
             }
 
-            
+
             // Interaction 6
             stopTempeteSound = hitbox.intersectsMesh(zoneInteraction6, false);
             if (stopTempeteSound && stopPlayTempeteSoundCounter == 0) {
@@ -705,6 +734,33 @@ var createScene = function () {
                 }, 5000);
             }
 
+            // Interaction 7
+            Playvenusvideo = hitbox.intersectsMesh(zoneInteraction7, false);
+            if (Playvenusvideo && playVenusVideoCounter == 0) {
+                playVenusVideoCounter++;
+            } else if (Playvenusvideo && playVenusVideoCounter == 1) {
+                zoneInteraction7.position.y = 500;
+                setTimeout(() => {
+                    videoVenusTexture.video.play();
+                    videoVenus.position.z = -40.99;
+                }, 1000);
+                setTimeout(() => {
+                    videoVenusTexture.video.pause();
+                    videoVenus.position.y = 500;
+                }, 6000);
+
+                gsap.to(camera.position, { duration: 1, x: -1, z: -34 });
+                gsap.to(camera.target, {
+                    duration: 1, x: -1, y: 4, z: -40, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+                modalGuiText.innerHTML = "Comment est-ce possible ?";
+                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
+                }, 5000);
+            }
 
             // Interaction 8
             canStrikeFleche = hitbox.intersectsMesh(zoneInteraction8, false);
@@ -712,24 +768,50 @@ var createScene = function () {
                 canStrikeFlecheCounter++;
             } else if (canStrikeFleche && canStrikeFlecheCounter == 1) {
                 zoneInteraction8.position.y = 500;
-                setTimeout(function() {
+                setTimeout(function () {
                     sonInteraction8.play();
                 }, 1300);
                 gsap.to(fleche.position, { duration: 1, delay: 1, x: -10.5, y: 4.7, z: -57, ease: "power3.in" });
-                gsap.to(camera.target, {duration: 2, x: -10.5, y: 4.7, z: -57, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
+                gsap.to(camera.target, {
+                    duration: 2, x: -10.5, y: 4.7, z: -57, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
                 canControl = false;
                 modalGuiText.innerHTML = "Ouf, je l'ai échappée belle..";
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
-                setTimeout(function() {
+                setTimeout(function () {
                     canControl = true;
                 }, 5000);
+            }
+
+            // Interaction 9
+            PlayGanymedevideo = hitbox.intersectsMesh(zoneInteraction9, false);
+            if (PlayGanymedevideo && playGanymedeVideoCounter == 0) {
+                playGanymedeVideoCounter++;
+            } else if (PlayGanymedevideo && playGanymedeVideoCounter == 1) {
+                zoneInteraction9.position.y = 500;
+                setTimeout(() => {
+                    videoGanymedeTexture.video.play();
+                    videoGanymede.position.z = -92.7;
+                }, 1000);
+                setTimeout(() => {
+                    videoGanymedeTexture.video.pause();
+                    videoGanymede.position.y = 500;
+                }, 6000);
+
+                gsap.to(camera.position, { duration: 1, x: -1, z: -80 });
+                gsap.to(camera.target, {
+                    duration: 1, x: -1, y: 4, z: -92, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+                modalGuiText.innerHTML = "Comment est-ce possible ?";
+                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
             }
-            
 
 
 
