@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(1, 2, 80);
+    camera.position = new BABYLON.Vector3(-1, 2, 80);
 
 
 
@@ -359,19 +359,51 @@ var createScene = function () {
     disputeDestheologiens.material = disputeDestheologiensMAT;
     janDavidsz.material = pieterFranszMAT;
 
-    //lumières
-    var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
-    lumJeuExpo.intensity = 2;
-    lumJeuExpo.diffuse = new BABYLON.Color3(0.5, 0.5, 0);
+
+
+    // Vidéo d'introduction
+    // var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    // var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/V2.mp4"], scene, false);
+    // var videoIntroMAT = new BABYLON.StandardMaterial("mat", scene);
+    // videoIntroMAT.diffuseTexture = videoIntroTexture;
+    // videoIntroMAT.backFaceCulling = false;
+    // videoIntroMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    // videoIntroMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    // videoIntro.material = videoIntroMAT;
+    // videoIntro.position = new BABYLON.Vector3(-1, 5, 75);
+    // videoIntro.rotation.y = 3.14;
+    // videoIntroTexture.video.autoplay = true;
+    // videoIntroTexture.video.loop = false;
+
+    // var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    // var introFondMAT = new BABYLON.StandardMaterial("introFond", scene);
+    // introFondMAT.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    // introFondMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    // introFond.material = introFondMAT;
+    // introFond.position = new BABYLON.Vector3(-1, 5, 74);
+
+    // canControl = false;
+    // camera.position.y = 5;
+    // camera.position.z = 84;
+    // camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
+    // gsap.to(introFondMAT, { duration: 1, delay: 40, alpha: 0});
+    // gsap.to(videoIntroMAT, { duration: 1, delay: 40, alpha: 0});
+    // gsap.to(camera.position, { duration: 1, delay: 40, x: -1, y: 2, z: 80 });
+    // gsap.to(camera.target, {
+    //     duration: 1, delay: 40, x: 0, y: 0, z: -70, onUpdate: function () {
+    //         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+    //     }
+    // });
+    // setTimeout(function() {
+    //     canControl = true;
+    // }, 40000);
 
 
     //barrières invisibles
-
-
     var zoneBarriere1 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere1", { height: 20, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneBarriere1.position = new BABYLON.Vector3(-1, 0.2, 22);
     var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
-    invisibleMat.alpha = 0.2;
+    invisibleMat.alpha = 0;
     zoneBarriere1.material = invisibleMat;
     zoneBarriere1.checkCollisions = true;
     zoneBarriere1.rotation.x = 3.14;
@@ -379,7 +411,7 @@ var createScene = function () {
     var zoneBarriere2 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere2", { height: 20, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneBarriere2.position = new BABYLON.Vector3(-1, 0.2, 4.9);
     var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
-    invisibleMat.alpha = 0.2;
+    invisibleMat.alpha = 0;
     zoneBarriere2.material = invisibleMat;
     zoneBarriere2.checkCollisions = true;
     zoneBarriere2.rotation.x = 3.14;
@@ -387,7 +419,7 @@ var createScene = function () {
     var zoneBarriere3 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere2", { height: 20, width: 55, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneBarriere3.position = new BABYLON.Vector3(-1, 0.2, -33);
     var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
-    invisibleMat.alpha = 0.2;
+    invisibleMat.alpha = 0;
     zoneBarriere3.material = invisibleMat;
     zoneBarriere3.checkCollisions = true;
     zoneBarriere3.rotation.x = 3.14;
@@ -395,15 +427,18 @@ var createScene = function () {
     var zoneBarriere4 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere2", { height: 20, width: 55, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneBarriere4.position = new BABYLON.Vector3(-1, 0.2, -48);
     var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
-    invisibleMat.alpha = 0.2;
+    invisibleMat.alpha = 0;
     zoneBarriere4.material = invisibleMat;
     zoneBarriere4.checkCollisions = true;
     zoneBarriere4.rotation.x = 3.14;
+
+
+
     // Interaction 1
     var zoneInteraction1 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction1", { height: 3, width: 60, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneInteraction1.position = new BABYLON.Vector3(-1, 0.2, 63);
     zoneInteraction1.rotation.x = 1.57;
-    invisibleMat.alpha = 0.2;
+    invisibleMat.alpha = 0;
     zoneInteraction1.material = invisibleMat;
 
     var sonInteraction1 = new BABYLON.Sound("sonInteraction1", "sound/Welcome.mp3", scene, null, {
@@ -427,7 +462,8 @@ var createScene = function () {
     var zoneInteraction2MAT = new BABYLON.StandardMaterial("zoneInteraction2MAT", scene);
     zoneInteraction2MAT.diffuseColor = BABYLON.Color3.Purple();
     zoneInteraction2MAT.backFaceCulling = false;
-    zoneInteraction2MAT.alpha = 0.3;
+    zoneInteraction2MAT.alpha = 0;
+    zoneInteraction2.material = zoneInteraction2MAT;
 
     var sonInteraction2 = new BABYLON.Sound("Luth", "sound/Luth.mp3", scene,
         null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
@@ -585,7 +621,7 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museev14.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museeV15.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
@@ -866,6 +902,9 @@ var createScene = function () {
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     canControl = true;
+                }, 5000);
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
             }
 
