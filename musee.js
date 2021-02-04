@@ -381,7 +381,7 @@ var createScene = function () {
     invisibleMat.alpha = 0;
     zoneInteraction1.material = invisibleMat;
 
-    var sonInteraction1 = new BABYLON.Sound("sonInteraction1", "sound/welcome.mp3", scene, null, {
+    var sonInteraction1 = new BABYLON.Sound("sonInteraction1", "sound/Welcome.mp3", scene, null, {
         loop: false,
         autoplay: false,
         maxDistance: 30
@@ -397,7 +397,7 @@ var createScene = function () {
      zoneInteraction2MAT.backFaceCulling = false;
      zoneInteraction2MAT.alpha = 0.3;
  
-     var sonInteraction2 = new BABYLON.Sound("mePerdonnas", "sound/Welcome.mp3", scene,
+     var sonInteraction2 = new BABYLON.Sound("mePerdonnas", "sound/Luth.mp3", scene,
          null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
 
      sonInteraction2.attachToMesh(hendrickTerBrugghen);
@@ -437,10 +437,11 @@ var createScene = function () {
     var salle = loader.addMeshTask("nom", "", "obj/", "museev13.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
-            m.position.y = 0; //Pour le monter en hauteur
-            m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
-            m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
-            shadowGenerator.getShadowMap().renderList.push(m);
+        m.position.y = 0; //Pour le monter en hauteur
+        m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
+        m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
+        m.material = new BABYLON.StandardMaterial("salle", scene);
+        m.material.backFaceCulling = false;
         });
     };
 
@@ -551,12 +552,12 @@ var scene = createScene();
 
 window.addEventListener('resize', function () { engine.resize() });
 
-// var fenetreModal = document.getElementById('fenetreModal'); //On récupère la fenêtre modale du fichier musee.html
-// var span = document.getElementsByClassName("close")[0] //On récupère la croix de la fenêtre modale
-// span.onclick = function () { fenetreModal.style.display = "none"; } //On cache la fenêtre modale si on clique sur la croix
-// window.onclick = function (event) {
-//     if (event.target == fenetreModal)
-//         fenetreModal.style.display = "none";
-// }//Si on clique sur la partie sombre, la fenêtre modale se fermera.
+var fenetreModal = document.getElementById('fenetreModal'); //On récupère la fenêtre modale du fichier musee.html
+var span = document.getElementsByClassName("close")[0] //On récupère la croix de la fenêtre modale
+span.onclick = function () { fenetreModal.style.display = "none"; } //On cache la fenêtre modale si on clique sur la croix
+window.onclick = function (event) {
+    if (event.target == fenetreModal)
+        fenetreModal.style.display = "none";
+}//Si on clique sur la partie sombre, la fenêtre modale se fermera.
 
 var modalGui = document.getElementById('modalgui-content');
