@@ -43,7 +43,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('../img/illustration_1.png');
+    background-image: url('../img/texture_noir.PNG');
     background-size: cover;
 }
 

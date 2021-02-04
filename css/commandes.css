@@ -32,7 +32,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('../img/illustration_2.PNG');
+    background-image: url('../img/texture_bordeaux.PNG');
     background-size: cover;
 }
 

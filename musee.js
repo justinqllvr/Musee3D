@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(-1, 2, 80);
+    camera.position = new BABYLON.Vector3(-15, 2, -65);
 
 
 
@@ -464,16 +464,34 @@ var createScene = function () {
     zoneInteraction7.position = new BABYLON.Vector3(-1, 0, -40);
 
     var videoVenus = BABYLON.MeshBuilder.CreatePlane("videoVenus", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var videoVenusMat = new BABYLON.StandardMaterial("vidFac", scene);
-    videoVenusMat.diffuseTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v1.mp4"], scene, false);
-    videoVenusMat.backFaceCulling = false;
-    videoVenusMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
-    videoVenusMat.specularColor = new BABYLON.Color3(0, 0, 0);
-    videoVenus.material = videoVenusMat;
-    videoVenus.position = new BABYLON.Vector3(-1, 5, -40);
-    videoVenusMat.diffuseTexture.video.loop = true;
+    var videoVenusTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/Venus_v2.mp4"], scene, false);
+    var videoVenusMAT = new BABYLON.StandardMaterial("mat", scene);
+    videoVenusMAT.diffuseTexture = videoVenusTexture;
+    videoVenusMAT.backFaceCulling = false;
+    videoVenusMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoVenusMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoVenus.material = videoVenusMAT;
+    videoVenus.position = new BABYLON.Vector3(-1, 5, 150);
+    videoVenusTexture.video.pause();
+    // videoVenusMat.opacityTexture = 0.3;
 
     // sonInteraction7.attachToMesh(bakhuizen);
+
+    //Interaction 9 -  Ganymède
+    var zoneInteraction9 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 15, scene);
+    zoneInteraction9.material = zoneInteraction2MAT;
+    zoneInteraction9.position = new BABYLON.Vector3(-1, 0, -80);
+
+    var videoGanymede = BABYLON.MeshBuilder.CreatePlane("videoVenus", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoGanymedeTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/Venus_v2.mp4"], scene, false);
+    var videoGanymedeMAT = new BABYLON.StandardMaterial("videoGanymedeMAT", scene);
+    videoGanymedeMAT.diffuseTexture = videoGanymedeTexture;
+    videoGanymedeMAT.backFaceCulling = false;
+    videoGanymedeMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoGanymedeMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoGanymede.material = videoGanymedeMAT;
+    videoGanymede.position = new BABYLON.Vector3(-1, 5, 150);
+    videoGanymedeTexture.video.pause();
     
 
 
@@ -529,6 +547,8 @@ var createScene = function () {
     var stopPlayClocherSoundCounter = 0;
     var canPlaySoundPigeonCounter = 0;
     var stopPlayTempeteSoundCounter = 0;
+    var playVenusVideoCounter = 0;
+    var playGanymedeVideoCounter = 0;
 
 
 
@@ -685,6 +705,62 @@ var createScene = function () {
                     }
                 });
                 modalGuiText.innerHTML = "Non... Ce n'est pas ça...";
+                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
+                }, 5000);
+            }
+
+            // Interaction 7
+            Playvenusvideo = hitbox.intersectsMesh(zoneInteraction7, false);
+            if (Playvenusvideo && playVenusVideoCounter == 0) {
+                playVenusVideoCounter++;
+            } else if (Playvenusvideo && playVenusVideoCounter == 1) {
+                zoneInteraction7.position.y = 500;
+                setTimeout(() => {
+                    videoVenusTexture.video.play();
+                    videoVenus.position.z = -40.99;
+                }, 1000);
+                setTimeout(() => {
+                    videoVenusTexture.video.pause();
+                    videoVenus.position.y = 500;
+                }, 6000);
+                
+                gsap.to(camera.position, { duration: 1, x: -1, z: -34 });
+                gsap.to(camera.target, {
+                    duration: 1, x: -1, y: 4, z: -40, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+                modalGuiText.innerHTML = "Comment est-ce possible ?";
+                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
+                }, 5000);
+            }
+
+            // Interaction 9
+            PlayGanymedevideo = hitbox.intersectsMesh(zoneInteraction9, false);
+            if (PlayGanymedevideo && playGanymedeVideoCounter == 0) {
+                playGanymedeVideoCounter++;
+            } else if (PlayGanymedevideo && playGanymedeVideoCounter == 1) {
+                zoneInteraction9.position.y = 500;
+                setTimeout(() => {
+                    videoGanymedeTexture.video.play();
+                    videoGanymede.position.z = -92.7;
+                }, 1000);
+                setTimeout(() => {
+                    videoGanymedeTexture.video.pause();
+                    videoGanymede.position.y = 500;
+                }, 6000);
+                
+                gsap.to(camera.position, { duration: 1, x: -1, z: -80 });
+                gsap.to(camera.target, {
+                    duration: 1, x: -1, y: 4, z: -92, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+                modalGuiText.innerHTML = "Comment est-ce possible ?";
                 gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
