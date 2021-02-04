@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(1, 2, -40);
+    camera.position = new BABYLON.Vector3(1, 2, 80);
 
 
 
