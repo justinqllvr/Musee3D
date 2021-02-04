@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(-1, 2, 80);
+    camera.position = new BABYLON.Vector3(-1, 2, 60);
 
 
 
@@ -402,6 +402,19 @@ var createScene = function () {
 
      sonInteraction2.attachToMesh(hendrickTerBrugghen);
 
+    // Interaction 3
+    var zoneInteraction3 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction3", { height: 2, width: 60, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneInteraction3.position = new BABYLON.Vector3(-1, 0.2, 20);
+    zoneInteraction3.rotation.x = 1.57;
+    zoneInteraction3.material = invisibleMat;
+
+    var potDeFleurs = BABYLON.MeshBuilder.CreatePlane("potDeFleurs", { height: 5, width: 1.5, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    potDeFleurs.position = new BABYLON.Vector3(5, 2.5, 5.1);
+    potDeFleurs.rotation.y = 3.14;
+    var potDeFleursMAT = new BABYLON.StandardMaterial("potDeFleursMAT", scene);
+    potDeFleursMAT.diffuseTexture = new BABYLON.Texture("texture/objects/pot.png", scene, false);
+    potDeFleurs.material = potDeFleursMAT;
+
     
     var islocked = false;
     scene.onPointerDown = function (evt) {
@@ -434,14 +447,14 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museev13.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museev14.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
         m.position.y = 0; //Pour le monter en hauteur
         m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
         m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
-        m.material = new BABYLON.StandardMaterial("salle", scene);
-        m.material.backFaceCulling = false;
+        // m.material = new BABYLON.StandardMaterial("salle", scene);
+        // m.material.backFaceCulling = false;
         });
     };
 
@@ -450,6 +463,7 @@ var createScene = function () {
     var isShading = false;
     var canPlaySoundCounter = 0;
     var stopPlaySoundCounter = 0;
+    var disappearPotCounter = 0;
 
    
 
@@ -462,16 +476,6 @@ var createScene = function () {
             //     pressE.style.display = "block";
             // else
             //     pressE.style.display = "none"
-            // canHideSphere = hitbox.intersectsMesh(sphereModalTest, false);
-            // if (canHideSphere && mat_sphere3.alpha == 1 && !isShading) {
-            //     isShading = true
-            //     mat_sphere3.alpha = 0.99;
-            // } else if (canHideSphere && mat_sphere3.alpha != 1 && isShading) {
-            //     mat_sphere3.alpha -= 0.05;
-            // } else if (canHideSphere && mat_sphere3.alpha == 0 && isShading) {
-            //     sphere3.setEnabled(false);
-            //     isShading = false;
-            // }
 
             canPlaySound = hitbox.intersectsMesh(zoneInteraction1, false);
             if (canPlaySound && canPlaySoundCounter == 0) {
@@ -509,6 +513,28 @@ var createScene = function () {
                 gsap.to(camera.target, {duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function() {
                     camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                 }});
+            }
+
+            canDisappearPot = hitbox.intersectsMesh(zoneInteraction3, false);
+            if (canDisappearPot && disappearPotCounter == 0) {
+                disappearPotCounter++;
+            } else if (canDisappearPot && disappearPotCounter == 1) {
+                zoneInteraction3.position.y = 50;
+                gsap.to(potDeFleursMAT, {duration: 2, delay: 2, alpha: 0, onComplete: function() {
+                    potDeFleurs.setEnabled(false);
+                }});
+                gsap.to(camera.target, {duration: 2, delay: 0, x: 5, y: 2.5, z: 5.1, onUpdate: function() {
+                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                }});
+                canControl = false;
+                modalGuiText.innerHTML = "C'est moi ou ce pot vient de disparaître...";
+                gsap.to(modalGui, {duration: 1, delay: 4, opacity: 1, bottom: 0});
+                setTimeout(function() {
+                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                }, 7000);
+                setTimeout(function() {
+                    canControl = true;
+                }, 7000);
             }
             
             if (canControl) {
@@ -561,3 +587,4 @@ window.onclick = function (event) {
 }//Si on clique sur la partie sombre, la fenêtre modale se fermera.
 
 var modalGui = document.getElementById('modalgui-content');
+var modalGuiText = document.getElementById('modalgui-text');
