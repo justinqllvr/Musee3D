@@ -14,7 +14,7 @@ var createScene = function () {
     camera.applyGravity = true;
     camera.checkCollisions = true;
     camera.attachControl(canvas, false);
-    camera.position = new BABYLON.Vector3(-1, 2, 60);
+    camera.position = new BABYLON.Vector3(-1, 2, -40);
 
 
 
@@ -279,64 +279,64 @@ var createScene = function () {
     var antonioBelluciMAT = new BABYLON.StandardMaterial("antonioBelluciMAT", scene);
     antonioBelluciMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/antonio_bellucci.jpg", scene, false);
     antonioBelluci.material = antonioBelluciMAT;
-    
-    var portraitFemme = BABYLON.MeshBuilder.CreatePlane("portraitFemme", { height:  3.99, width: 3.222, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+
+    var portraitFemme = BABYLON.MeshBuilder.CreatePlane("portraitFemme", { height: 3.99, width: 3.222, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     portraitFemme.position = new BABYLON.Vector3(-10.6, 3.55, -29);
     portraitFemme.rotation.y = -1.57;
     var portraitFemmeMAT = new BABYLON.StandardMaterial("portraitFemmeMAT", scene);
     portraitFemmeMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/portrait_femme.png", scene, false);
     portraitFemme.material = portraitFemmeMAT;
 
-    var portraitHomme = BABYLON.MeshBuilder.CreatePlane("portraitHomme", { height:  3.99, width: 3.222, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var portraitHomme = BABYLON.MeshBuilder.CreatePlane("portraitHomme", { height: 3.99, width: 3.222, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     portraitHomme.position = new BABYLON.Vector3(17, 5.75, -75.6);
     portraitHomme.rotation.y = 3.14;
     var portraitHommeMAT = new BABYLON.StandardMaterial("portraitHommeMAT", scene);
     portraitHommeMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/portrait_homme.png", scene, false);
     portraitHomme.material = portraitHommeMAT;
 
-    var martyreSaintGeorges = BABYLON.MeshBuilder.CreatePlane("martyreSaintGeorges", { height:  11, width: 9, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var martyreSaintGeorges = BABYLON.MeshBuilder.CreatePlane("martyreSaintGeorges", { height: 11, width: 9, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     martyreSaintGeorges.position = new BABYLON.Vector3(22, 5.8, -60.6);
     martyreSaintGeorges.rotation.y = 1.57;
     var martyreSaintGeorgesMAT = new BABYLON.StandardMaterial("martyreSaintGeorgesMAT", scene);
     martyreSaintGeorgesMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/martyre_saintgeorges.jpg", scene, false);
     martyreSaintGeorges.material = martyreSaintGeorgesMAT;
 
-    var janvanNoordt = BABYLON.MeshBuilder.CreatePlane("janvanNoordt", { height:  6.93, width: 5.97, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var janvanNoordt = BABYLON.MeshBuilder.CreatePlane("janvanNoordt", { height: 6.93, width: 5.97, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     janvanNoordt.position = new BABYLON.Vector3(22, 4, -13);
     janvanNoordt.rotation.y = 1.57;
     var janvanNoordtMAT = new BABYLON.StandardMaterial("janvanNoordtMAT", scene);
     janvanNoordtMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/janvan_Noordt.jpg", scene, false);
     janvanNoordt.material = janvanNoordtMAT;
 
-    var jacobSalomonsz = BABYLON.MeshBuilder.CreatePlane("jacobSalomonsz", { height:  4.2, width: 5.52, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var jacobSalomonsz = BABYLON.MeshBuilder.CreatePlane("jacobSalomonsz", { height: 4.2, width: 5.52, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     jacobSalomonsz.position = new BABYLON.Vector3(17, 5, -103);
     jacobSalomonsz.rotation.y = 3.14;
     var jacobSalomonszMAT = new BABYLON.StandardMaterial("jacobSalomonszMAT", scene);
     jacobSalomonszMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jacob_salomonsz.jpg", scene, false);
     jacobSalomonsz.material = jacobSalomonszMAT;
 
-    var pieterVerelst = BABYLON.MeshBuilder.CreatePlane("pieterVerelst", { height:  3.03, width: 4.17, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var pieterVerelst = BABYLON.MeshBuilder.CreatePlane("pieterVerelst", { height: 3.03, width: 4.17, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     pieterVerelst.position = new BABYLON.Vector3(-21, 5, -103);
     pieterVerelst.rotation.y = 3.14;
     var pieterVerelstMAT = new BABYLON.StandardMaterial("pieterVerelstMAT", scene);
     pieterVerelstMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/pieter_verelst.jpg", scene, false);
     pieterVerelst.material = pieterVerelstMAT;
 
-    var pieterFransz = BABYLON.MeshBuilder.CreatePlane("pieterVerelst", { height:   6.18, width:  5.1, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var pieterFransz = BABYLON.MeshBuilder.CreatePlane("pieterVerelst", { height: 6.18, width: 5.1, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     pieterFransz.position = new BABYLON.Vector3(-24.5, 4, -0.5);
     pieterFransz.rotation.y = 1.57;
     var pieterFranszMAT = new BABYLON.StandardMaterial("pieterFranszMAT", scene);
     pieterFranszMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/pieter_fransz.jpg", scene, false);
     pieterFransz.material = pieterFranszMAT;
 
-    var janDavidsz = BABYLON.MeshBuilder.CreatePlane("janDavidsz", { height:   3.54, width:  2.88, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var janDavidsz = BABYLON.MeshBuilder.CreatePlane("janDavidsz", { height: 3.54, width: 2.88, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     janDavidsz.position = new BABYLON.Vector3(22, 4, -0.5);
     janDavidsz.rotation.y = -1.57;
     var janDavidszMAT = new BABYLON.StandardMaterial("janDavidszMAT", scene);
     janDavidszMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/jan_davidsz.jpg", scene, false);
     janDavidsz.material = janDavidszMAT;
 
-    var tobie = BABYLON.MeshBuilder.CreatePlane("tobie", { height:   7.68, width:  10.02, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var tobie = BABYLON.MeshBuilder.CreatePlane("tobie", { height: 7.68, width: 10.02, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     tobie.position = new BABYLON.Vector3(-24.5, 5, -60);
     tobie.rotation.y = 1.57;
     var tobieMAT = new BABYLON.StandardMaterial("tobieMAT", scene);
@@ -364,7 +364,7 @@ var createScene = function () {
     disputeDestheologiensMAT.diffuseTexture = new BABYLON.Texture("texture/paintings/others/dispute_des_theologiens.png", scene, false);
     disputeDestheologiens.material = disputeDestheologiensMAT;
     janDavidsz.material = pieterFranszMAT;
-    
+
     //lumières
     var lumJeuExpo = new BABYLON.SpotLight("SpotJV", new BABYLON.Vector3(0, 15, 15), new BABYLON.Vector3(0, -1, 0), 0.9, 2, scene);
     lumJeuExpo.intensity = 2;
@@ -388,21 +388,21 @@ var createScene = function () {
     });
     sonInteraction1.attachToMesh(fransHals);
 
-     //Interaction 2 - avec le son
-     var zoneInteraction2 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
-     zoneInteraction2.material = zoneInteraction2MAT;
-     zoneInteraction2.position = new BABYLON.Vector3(-19, 0, 32.5);
-     var zoneInteraction2MAT = new BABYLON.StandardMaterial("zoneInteraction2MAT", scene);
-     zoneInteraction2MAT.diffuseColor = BABYLON.Color3.Purple();
-     zoneInteraction2MAT.backFaceCulling = false;
-     zoneInteraction2MAT.alpha = 0.3;
- 
-     var sonInteraction2 = new BABYLON.Sound("Luth", "sound/Luth.mp3", scene,
-         null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
+    //Interaction 2 - avec le son
+    var zoneInteraction2 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
+    zoneInteraction2.material = zoneInteraction2MAT;
+    zoneInteraction2.position = new BABYLON.Vector3(-19, 0, 32.5);
+    var zoneInteraction2MAT = new BABYLON.StandardMaterial("zoneInteraction2MAT", scene);
+    zoneInteraction2MAT.diffuseColor = BABYLON.Color3.Purple();
+    zoneInteraction2MAT.backFaceCulling = false;
+    zoneInteraction2MAT.alpha = 0.3;
 
-     sonInteraction2.attachToMesh(hendrickTerBrugghen);
+    var sonInteraction2 = new BABYLON.Sound("Luth", "sound/Luth.mp3", scene,
+        null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
 
-     // Interaction 3
+    sonInteraction2.attachToMesh(hendrickTerBrugghen);
+
+    // Interaction 3
     var zoneInteraction3 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction3", { height: 2, width: 60, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneInteraction3.position = new BABYLON.Vector3(-1, 0.2, 20);
     zoneInteraction3.rotation.x = 1.57;
@@ -416,29 +416,46 @@ var createScene = function () {
     potDeFleurs.material = potDeFleursMAT;
 
 
-     //Interaction 4 -  Eglise
-     var zoneInteraction4 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
-     zoneInteraction4.material = zoneInteraction2MAT;
-     zoneInteraction4.position = new BABYLON.Vector3(-14, 0, 10);
- 
-     var sonInteraction4 = new BABYLON.Sound("Clocher", "sound/Clocher.mp3", scene,
-         null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
+    //Interaction 4 -  Eglise
+    var zoneInteraction4 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
+    zoneInteraction4.material = zoneInteraction2MAT;
+    zoneInteraction4.position = new BABYLON.Vector3(-14, 0, 10);
 
-     sonInteraction4.attachToMesh(vanGoyen);
+    var sonInteraction4 = new BABYLON.Sound("Clocher", "sound/Clocher.mp3", scene,
+        null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
 
-     //Interaction 6 -  Eglise
-     var zoneInteraction6 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
-     zoneInteraction6.material = zoneInteraction2MAT;
-     zoneInteraction6.position = new BABYLON.Vector3(3, 0, -27);
- 
-     var sonInteraction6 = new BABYLON.Sound("Clocher", "sound/Tempete.mp3", scene,
-         null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
+    sonInteraction4.attachToMesh(vanGoyen);
 
-     sonInteraction6.attachToMesh(bakhuizen);
+    //Interaction 6 -  Eglise
+    var zoneInteraction6 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
+    zoneInteraction6.material = zoneInteraction2MAT;
+    zoneInteraction6.position = new BABYLON.Vector3(3, 0, -27);
 
-    
+    var sonInteraction6 = new BABYLON.Sound("Clocher", "sound/Tempete.mp3", scene,
+        null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
 
-    
+    sonInteraction6.attachToMesh(bakhuizen);
+
+    //Interaction 7 -  Venus
+    var zoneInteraction7 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 15, scene);
+    zoneInteraction7.material = zoneInteraction2MAT;
+    zoneInteraction7.position = new BABYLON.Vector3(-1, 0, -40);
+
+    var videoVenus = BABYLON.MeshBuilder.CreatePlane("videoVenus", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoVenusMat = new BABYLON.StandardMaterial("vidFac", scene);
+    videoVenusMat.diffuseTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v1.mp4"], scene, false);
+    videoVenusMat.backFaceCulling = false;
+    videoVenusMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoVenusMat.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoVenus.material = videoVenusMat;
+    videoVenus.position = new BABYLON.Vector3(-1, 5, -40);
+    videoVenusMat.diffuseTexture.video.loop = true;
+
+    // sonInteraction7.attachToMesh(bakhuizen);
+
+
+
+
     var islocked = false;
     scene.onPointerDown = function (evt) {
         if (!islocked) //Si la souris n'est pas bloqué...
@@ -473,11 +490,11 @@ var createScene = function () {
     var salle = loader.addMeshTask("nom", "", "obj/", "museev14.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
-        m.position.y = 0; //Pour le monter en hauteur
-        m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
-        m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
-        // m.material = new BABYLON.StandardMaterial("salle", scene);
-        // m.material.backFaceCulling = false;
+            m.position.y = 0; //Pour le monter en hauteur
+            m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
+            m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
+            // m.material = new BABYLON.StandardMaterial("salle", scene);
+            // m.material.backFaceCulling = false;
         });
     };
 
@@ -492,7 +509,7 @@ var createScene = function () {
     var disappearPotCounter = 0;
 
 
-   
+
 
 
     loader.onFinish = function () {
@@ -510,22 +527,28 @@ var createScene = function () {
             } else if (canPlaySound && canPlaySoundCounter == 1) {
                 zoneInteraction1.position.y = 50;
                 sonInteraction1.play();
-                gsap.to(modalGui, {duration: 1, delay: 1, opacity: 1, bottom: 0});
-                gsap.to(camera.target, {duration: 1, delay: 1, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
-                gsap.to(camera.target, {duration: 1, delay: 2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
-                gsap.to(camera.position, {duration: 2, delay: 5, x: -1, z: 70});
-                gsap.to(camera.target, {duration: 2, delay: 5, x: -1, y: 3.5, z: 63.8, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
+                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                gsap.to(camera.target, {
+                    duration: 1, delay: 1, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+                gsap.to(camera.target, {
+                    duration: 1, delay: 2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+                gsap.to(camera.position, { duration: 2, delay: 5, x: -1, z: 70 });
+                gsap.to(camera.target, {
+                    duration: 2, delay: 5, x: -1, y: 3.5, z: 63.8, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
                 canControl = false;
-                setTimeout(function() {
-                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 7000);
-                setTimeout(function() {
+                setTimeout(function () {
                     canControl = true;
                 }, 7000);
             }
@@ -538,69 +561,87 @@ var createScene = function () {
                 sonInteraction2.stop();
                 sonInteraction2.autoplay = false;
                 sonInteraction2.loop = false;
-                gsap.to(camera.position, {duration: 1, x: -20, z: 32.5});
-                gsap.to(camera.target, {duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
+                gsap.to(camera.position, { duration: 1, x: -20, z: 32.5 });
+                gsap.to(camera.target, {
+                    duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
                 modalGuiText.innerHTML = "Quelle toile magnifique... Mais d'où venait cette musique ?";
-                gsap.to(modalGui, {duration: 1, delay: 1, opacity: 1, bottom: 0});
-                setTimeout(function() {
-                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
             }
 
-            stopClocherLuth = hitbox.intersectsMesh(zoneInteraction4, false);
-            if (stopClocherLuth && stopPlayClocherSoundCounter == 0) {
+            stopClocherSound = hitbox.intersectsMesh(zoneInteraction4, false);
+            if (stopClocherSound && stopPlayClocherSoundCounter == 0) {
                 stopPlayClocherSoundCounter++;
-            } else if (stopClocherLuth && stopPlayClocherSoundCounter == 1) {
+            } else if (stopClocherSound && stopPlayClocherSoundCounter == 1) {
                 zoneInteraction4.position.y = 500;
                 sonInteraction4.stop();
                 sonInteraction4.autoplay = false;
                 sonInteraction4.loop = false;
                 -14, 0, 10
-                gsap.to(camera.position, {duration: 1, x: -14, z: 15});
-                gsap.to(camera.target, {duration: 1, x: -14, y: 5, z: -27, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
-                
+                gsap.to(camera.position, { duration: 1, x: -14, z: 15 });
+                gsap.to(camera.target, {
+                    duration: 1, x: -14, y: 5, z: -27, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+
             }
 
-            stopTempeteLuth = hitbox.intersectsMesh(zoneInteraction6, false);
-            if (stopTempeteLuth && stopPlayTempeteSoundCounter == 0) {
+            stopTempeteSound = hitbox.intersectsMesh(zoneInteraction6, false);
+            if (stopTempeteSound && stopPlayTempeteSoundCounter == 0) {
                 stopPlayTempeteSoundCounter++;
-            } else if (stopTempeteLuth && stopPlayTempeteSoundCounter == 1) {
+            } else if (stopTempeteSound && stopPlayTempeteSoundCounter == 1) {
                 zoneInteraction6.position.y = 500;
-                sonInteraction6.stop();
-                sonInteraction6.autoplay = false;
-                sonInteraction6.loop = false;
-                // gsap.to(camera.position, {duration: 1, x: -20, z: 32.5});
-                // gsap.to(camera.target, {duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function() {
-                //     camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                // }});
+                setTimeout(() => {
+                    sonInteraction6.stop();
+                    sonInteraction6.autoplay = false;
+                    sonInteraction6.loop = false;
+                }, 6000);
+                gsap.to(camera.position, { duration: 1, x: -2, z: -27 });
+                gsap.to(camera.target, {
+                    duration: 1, x: 3, y: 2.8, z: -28, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
+                modalGuiText.innerHTML = "Non... Ce n'est pas ça...";
+                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
+                }, 5000);
             }
+
             canDisappearPot = hitbox.intersectsMesh(zoneInteraction3, false);
             if (canDisappearPot && disappearPotCounter == 0) {
                 disappearPotCounter++;
             } else if (canDisappearPot && disappearPotCounter == 1) {
                 zoneInteraction3.position.y = 50;
-                gsap.to(potDeFleursMAT, {duration: 2, delay: 2, alpha: 0, onComplete: function() {
-                    potDeFleurs.setEnabled(false);
-                }});
-                gsap.to(camera.target, {duration: 2, delay: 0, x: 5, y: 2.5, z: 5.1, onUpdate: function() {
-                    camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                }});
+                gsap.to(potDeFleursMAT, {
+                    duration: 2, delay: 2, alpha: 0, onComplete: function () {
+                        potDeFleurs.setEnabled(false);
+                    }
+                });
+                gsap.to(camera.target, {
+                    duration: 2, delay: 0, x: 5, y: 2.5, z: 5.1, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
                 canControl = false;
                 modalGuiText.innerHTML = "C'est moi ou ce pot vient de disparaître...";
-                gsap.to(modalGui, {duration: 1, delay: 4, opacity: 1, bottom: 0});
-                setTimeout(function() {
-                    gsap.to(modalGui, {duration: 1, opacity: 0, bottom: '-300px'});
+                gsap.to(modalGui, { duration: 1, delay: 4, opacity: 1, bottom: 0 });
+                setTimeout(function () {
+                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 7000);
-                setTimeout(function() {
+                setTimeout(function () {
                     canControl = true;
                 }, 7000);
 
             }
-            
+
             if (canControl) {
                 camera.attachControl(canvas, false); //On attache les contrôles de la scène via le canvas qu'on a crée tout à l'heure dans musee.html
                 camera.keysLeft = [81, 37]; //Q et <-
