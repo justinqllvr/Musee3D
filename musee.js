@@ -445,6 +445,14 @@ var createScene = function () {
     zoneBarriere4.checkCollisions = true;
     zoneBarriere4.rotation.x = 3.14;
 
+    var zoneBarriere5 = BABYLON.MeshBuilder.CreatePlane("zoneBarriere2", { height: 20, width: 55, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneBarriere5.position = new BABYLON.Vector3(-1, 0.2, -19.7);
+    var invisibleMat = new BABYLON.StandardMaterial("invisible", scene);
+    invisibleMat.alpha = 0;
+    zoneBarriere5.material = invisibleMat;
+    zoneBarriere5.checkCollisions = true;
+    zoneBarriere5.rotation.x = 3.14;
+
 
 
     // Interaction 1
@@ -543,12 +551,12 @@ var createScene = function () {
     // invisibleMat.alpha = 0.2;
     // IntroInteraction6.material = invisibleMat;
 
-    var zoneInteraction6 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 10, scene);
-    zoneInteraction6.material = zoneInteraction2MAT;
-    zoneInteraction6.position = new BABYLON.Vector3(3, 0, -27);
-
+    var zoneInteraction6 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction6", { height: 13, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    zoneInteraction6.material = invisibleMat;
+    zoneInteraction6.rotation.x = 1.57;
+    zoneInteraction6.position = new BABYLON.Vector3(-1, 0, -27);
     var sonInteraction6 = new BABYLON.Sound("Clocher", "sound/Tempete.mp3", scene,
-        null, { loop: true, autoplay: true, spatialSound: true, maxDistance: 25 });
+        null, { loop: false, autoplay: false, spatialSound: true, maxDistance: 20 });
 
     sonInteraction6.attachToMesh(bakhuizen);
 
@@ -624,10 +632,10 @@ var createScene = function () {
     });
     sonFille1.position = new BABYLON.Vector3(-30, 0.2, 60);
     //son 2
-    var sonFille2 = new BABYLON.Sound("sonFille1", "sound/papa_vient_voir__.mp3", scene, null, {
+    var sonFille2 = new BABYLON.Sound("sonFille1", "sound/papaaa.mp3", scene, null, {
         loop: false,
         autoplay: false,
-        maxDistance: 80,
+        maxDistance: 40,
         spatialSound: true,
     });
     sonFille2.position = new BABYLON.Vector3(6, 0.2, 10);
@@ -635,18 +643,26 @@ var createScene = function () {
     var sonFille3 = new BABYLON.Sound("sonFille1", "sound/papa_ou_es_tu_.mp3", scene, null, {
         loop: false,
         autoplay: false,
-        maxDistance: 80,
+        maxDistance: 40,
         spatialSound: true,
     });
     sonFille3.attachToMesh(bakhuizen);
     //son 4
-    var sonFille4 = new BABYLON.Sound("sonFille1", "sound/papa_ou_es_tu_.mp3", scene, null, {
+    var sonFille4 = new BABYLON.Sound("sonFille1", "sound/par_ici.mp3", scene, null, {
         loop: false,
         autoplay: false,
-        maxDistance: 80,
+        maxDistance: 40,
         spatialSound: true,
     });
     sonFille4.attachToMesh(maitreChandelle);
+
+    var sonFille5 = new BABYLON.Sound("sonFille1", "sound/wouaaa_comme_il_est_beau_ce_tableau_.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 50,
+        spatialSound: true,
+    });
+    sonFille5.attachToMesh(pierrePaulRubens);
 
 
 
@@ -761,7 +777,7 @@ var createScene = function () {
                 setTimeout(function () {
                     canControl = true;
                     sonFille1.play();
-                }, 8000);
+                }, 7000);
             }
 
 
@@ -834,29 +850,6 @@ var createScene = function () {
                 }, 5000);
             }
 
-
-
-
-            // // Interaction 4
-            // stopClocherSound = hitbox.intersectsMesh(zoneInteraction4, false);
-            // if (stopClocherSound && stopPlayClocherSoundCounter == 0) {
-            //     stopPlayClocherSoundCounter++;
-            // } else if (stopClocherSound && stopPlayClocherSoundCounter == 1) {
-            //     zoneBarriere2.position.x = 150;
-            //     zoneInteraction4.position.y = 500;
-            //     sonInteraction4.stop();
-            //     sonInteraction4.autoplay = false;
-            //     sonInteraction4.loop = false;
-            //     -14, 0, 10
-            //     gsap.to(camera.position, { duration: 1, x: -14, z: 15 });
-            //     gsap.to(camera.target, {
-            //         duration: 1, x: -14, y: 5, z: -27, onUpdate: function () {
-            //             camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-            //         }
-            //     });
-            // }
-
-
             // Interaction 5
             canPlaySoundPigeon = hitbox.intersectsMesh(zoneInteraction5, false);
             if (canPlaySoundPigeon && canPlaySoundPigeonCounter == 0) {
@@ -885,27 +878,14 @@ var createScene = function () {
                 setTimeout(function () {
                     canControl = true;
                     modalGuiText.innerHTML = "Ici, j'arrive !";
+                    sonInteraction6.play();
+                    sonInteraction6.autoplay = true;
+                    sonInteraction6.loop = true;
+                    zoneBarriere5.position.x = 500;
                 }, 9500);
             }
 
-
-            // Interaction 6
-
-            // textTempete = hitbox.intersectsMesh(IntroInteraction6, false);
-            // if (textTempete && textTempeteCounter == 0) {
-            //     textTempeteCounter++;
-            // } else if (textTempete && textTempeteCounter == 1) {
-            //     IntroInteraction6.position.y = 500;
-            //     camera.attachPostProcess(postProcess0);
-            //     camera.attachPostProcess(postProcess1);
-            //     modalGuiText.innerHTML = "Je ... Mais que m'arrive-t-il ?";
-
-            //     gsap.to(modalGui, { duration: 1, delay: 0, opacity: 1, bottom: 0 });
-            //     setTimeout(function () {
-            //         gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
-            //     }, 4000);
-            // }
-
+            //interraction 6
             stopTempeteSound = hitbox.intersectsMesh(zoneInteraction6, false);
             if (stopTempeteSound && stopPlayTempeteSoundCounter == 0) {
                 stopPlayTempeteSoundCounter++;
@@ -915,35 +895,8 @@ var createScene = function () {
                 setTimeout(() => {
                     camera.attachPostProcess(postProcess0);
                     camera.attachPostProcess(postProcess1);
-                    gsap.to(camera.target, {
-                        duration: 1, delay: 0, x: (camera.target.x), y: 3.5, z: (camera.target.z + 15), onUpdate: function () {
-                            camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                        }
-                    });
-                    gsap.to(camera.target, {
-                        duration: 1, delay: 2, x: (camera.target.x), y: 3.5, z: (camera.target.z - 15), onUpdate: function () {
-                            camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                        }
-                    });
-                    gsap.to(camera.target, {
-                        duration: 1, delay: 4, x: (camera.target.x), y: 3.5, z: (camera.target.z + 15), onUpdate: function () {
-                            camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                        }
-                    });
-                    gsap.to(camera.target, {
-                        duration: 1, delay: 6, x: (camera.target.x), y: 3.5, z: (camera.target.z - 15), onUpdate: function () {
-                            camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                        }
-                    });
-                    gsap.to(camera.target, {
-                        duration: 1, delay: 8, x: (camera.target.x), y: 3.5, z: (camera.target.z), onUpdate: function () {
-                            camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-                        }
-                    });
                 }, 3000);
-                //effet de nausée
                 
-
                 gsap.to(camera.position, { duration: 1, x: -2, z: -27 });
                 gsap.to(camera.target, {
                     duration: 1, x: 3, y: 2.8, z: -28, onUpdate: function () {
@@ -954,17 +907,18 @@ var createScene = function () {
                 modalGuiText.innerHTML = "Non... serais-ce ce que je pense ?!";
                 gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
                 setTimeout(function () {
-                    gsap.to(modalGui, { duration: 1,delay: 4, opacity: 0, bottom: '-300px' });
+                    gsap.to(modalGui, { duration: 1,delay: 10, opacity: 0, bottom: '-300px' });
                     modalGuiText.innerHTML = "Ca recommence, je le savais !";
+                    canControl = true;
                 }, 5000);
                 setTimeout(() => {
                     sonInteraction6.stop();
                     sonInteraction6.autoplay = false;
                     sonInteraction6.loop = false;
                     camera.detachPostProcess(postProcess0);
-                    camera.detachPostProcess(postProcess1);
-                    canControl = true;
-                }, 15000);
+                    camera.detachPostProcess(postProcess1);   
+                    modalGuiText.innerHTML = "J'avais comme la sensation d'être bloqué dans le tableau...";
+                }, 12000);
             }
 
             // Interaction 7
@@ -989,17 +943,17 @@ var createScene = function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                     }
                 });
-                modalGuiText.innerHTML = "Comment est-ce possible ?";
-                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                modalGuiText.innerHTML = "Le tableau !!!?";
+                gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
-                    gsap.to(modalGui, { duration: 1, delay: 4, opacity: 0, bottom: '-300px' });
+                    gsap.to(modalGui, { duration: 1, delay: 10, opacity: 0, bottom: '-300px' });
                 }, 5000);
                 setTimeout(() => {
                     sonFille4.play()
-                }, 6000);
+                }, 5500);
                 setTimeout(() => {
                     modalGuiText.innerHTML = "Emma ce n'est plus drôle, revient !";
-                }, 6500);
+                }, 7500);
             }
 
             // Interaction 8
@@ -1026,6 +980,9 @@ var createScene = function () {
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
+                setTimeout(function () {
+                    sonFille5.play();
+                }, 4000);
             }
 
             // Interaction 9
