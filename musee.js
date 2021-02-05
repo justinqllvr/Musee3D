@@ -720,7 +720,48 @@ var createScene = function () {
     bruitBlanc.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
     bruitBlanc.newVolume = 10;
 
+    //respiration et son de coeurs
+    var respiration10 = new BABYLON.Sound("respiration10", "sound/Respiration_10.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 50,
+    });
+    respiration10.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
 
+    var respiration5 = new BABYLON.Sound("respiration5", "sound/Respiration_5.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 50,
+    });
+    respiration5.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
+
+    var coeurLent5 = new BABYLON.Sound("coeurLent5", "sound/coeur_lent_5.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 50,
+    });
+    coeurLent5.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
+
+    var coeurrapide5 = new BABYLON.Sound("coeurLent5", "sound/coeur_rapide_5.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 50,
+    });
+    coeurrapide5.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
+
+    //Background musique
+    var Background_music = new BABYLON.Sound("coeurLent5", "sound/background_music.mp3", scene, null, {
+        loop: true,
+        autoplay: false,
+        maxDistance: 50,
+    });
+    Background_music.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
+    setTimeout(() => {
+        Background_music.play();
+        Background_music.setVolume(0.1);
+    }, 47000);
+    
+    
 
     var islocked = false;
     scene.onPointerDown = function (evt) {
@@ -753,7 +794,7 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museeV16.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museeV17.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
@@ -807,6 +848,9 @@ var createScene = function () {
             } else if (canPlaySound && canPlaySoundCounter == 1) {
                 zoneInteraction1.position.y = 50;
                 sonInteraction1.play();
+                setTimeout(() => {
+                    coeurLent5.play()
+                }, 1000);
                 gsap.to(modalGui, { duration: 1, delay: 0.5, opacity: 1, bottom: 0 });
                 gsap.to(camera.target, {
                     duration: 1, delay: 0.2, x: (camera.target.x - 25), y: 3.5, z: (camera.target.z - 25), onUpdate: function () {
@@ -926,6 +970,10 @@ var createScene = function () {
                 setTimeout(function() {
                     sonInteraction5.play()
                 }, 500);
+                setTimeout(function() {
+                    coeurLent5.play();
+                    Respiration5.play();
+                }, 1300);
                 gsap.to(oiseau.position, { duration: 1, x: -20, y: 0.05, z: -13, ease: "power3.in" });
                 gsap.to(camera.target, {
                     duration: 2, delay: 1, x: -20, y: 0.05, z: -13, onUpdate: function () {
@@ -982,7 +1030,10 @@ var createScene = function () {
                     camera.attachPostProcess(postProcess0);
                     camera.attachPostProcess(postProcess1);
                 }, 3000);
-                
+                setTimeout(function() {
+                    respiration10.play();
+                    coeurLent5.play();
+                }, 3300);
                 gsap.to(camera.position, { duration: 1, x: -2, z: -27 });
                 gsap.to(camera.target, {
                     duration: 1, x: 3, y: 2.8, z: -28, onUpdate: function () {
@@ -1053,6 +1104,10 @@ var createScene = function () {
                 setTimeout(function () {
                     sonInteraction8.play();
                 }, 1300);
+                setTimeout(function() {
+                    respiration10.play();
+                    coeurRapide5.play();
+                }, 2000);
                 gsap.to(fleche.position, { duration: 1, delay: 1, x: -10.5, y: 4.7, z: -57, ease: "power3.in" });
                 gsap.to(camera.target, {
                     duration: 2, x: -10.5, y: 4.7, z: -57, onUpdate: function () {
@@ -1061,7 +1116,7 @@ var createScene = function () {
                 });
                 canControl = false;
                 setTimeout(() => {
-                    modalGuiText.innerHTML = "Ouf, je l'ai échappée belle..";
+                    modalGuiText.innerHTML = "Ouf, je l'ai échappé belle..";
                 }, 2000);
                 
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
