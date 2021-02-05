@@ -363,80 +363,80 @@ var createScene = function () {
 
 
 
-    var startButton = document.getElementById('start-button');
-    var startButtonDiv = document.getElementsByClassName('start-button')[0];
+    // var startButton = document.getElementById('start-button');
+    // var startButtonDiv = document.getElementsByClassName('start-button')[0];
 
-    // Vidéo d'introduction
-    var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 6.54, width: 11.63, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v3.mp4"], scene, false);
-    var videoIntroMAT = new BABYLON.StandardMaterial("mat", scene);
-    videoIntroMAT.diffuseTexture = videoIntroTexture;
-    videoIntroMAT.backFaceCulling = false;
-    videoIntroMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
-    videoIntroMAT.specularColor = new BABYLON.Color3(0, 0, 0);
-    videoIntro.material = videoIntroMAT;
-    videoIntro.position = new BABYLON.Vector3(-1, 5, 75);
-    videoIntro.rotation.y = 3.14;
-    videoIntroTexture.video.autoplay = false;
-    videoIntroTexture.video.loop = false;
+    // // Vidéo d'introduction
+    // var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 6.54, width: 11.63, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    // var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v3.mp4"], scene, false);
+    // var videoIntroMAT = new BABYLON.StandardMaterial("mat", scene);
+    // videoIntroMAT.diffuseTexture = videoIntroTexture;
+    // videoIntroMAT.backFaceCulling = false;
+    // videoIntroMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    // videoIntroMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    // videoIntro.material = videoIntroMAT;
+    // videoIntro.position = new BABYLON.Vector3(-1, 5, 75);
+    // videoIntro.rotation.y = 3.14;
+    // videoIntroTexture.video.autoplay = false;
+    // videoIntroTexture.video.loop = false;
     
-    canControl = false;
-    camera.position.y = 5;
-    camera.position.z = 84;
-    camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
+    // canControl = false;
+    // camera.position.y = 5;
+    // camera.position.z = 84;
+    // camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
 
-    var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 50, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var introFondMAT = new BABYLON.StandardMaterial("introFondMAT", scene);
-    introFondMAT.diffuseColor = new BABYLON.Color3(0, 0, 0);
-    introFondMAT.specularColor = new BABYLON.Color3(0, 0, 0);
-    introFond.material = introFondMAT;
-    introFond.position = new BABYLON.Vector3(-1, 5, 74);
+    // var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 50, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    // var introFondMAT = new BABYLON.StandardMaterial("introFondMAT", scene);
+    // introFondMAT.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    // introFondMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    // introFond.material = introFondMAT;
+    // introFond.position = new BABYLON.Vector3(-1, 5, 74);
 
-    var introCommandes = BABYLON.MeshBuilder.CreatePlane("introCommandes", { height: 5, width: 5, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var introCommandesMAT = new BABYLON.StandardMaterial("introCommandesMAT", scene);
-    var t = new BABYLON.Texture("img/commandes.png", scene, false);
-    t.hasAlpha = true;
-    introCommandesMAT.diffuseTexture = t;
-    introCommandesMAT.useAlphaFromDiffuseTexture = true;
-    introCommandesMAT.alpha = 0;
-    introCommandes.material = introCommandesMAT;
-    introCommandes.rotation.y = 3.14;
-    introCommandes.position = new BABYLON.Vector3(1, 5, 75);
+    // var introCommandes = BABYLON.MeshBuilder.CreatePlane("introCommandes", { height: 5, width: 5, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    // var introCommandesMAT = new BABYLON.StandardMaterial("introCommandesMAT", scene);
+    // var t = new BABYLON.Texture("img/commandes.png", scene, false);
+    // t.hasAlpha = true;
+    // introCommandesMAT.diffuseTexture = t;
+    // introCommandesMAT.useAlphaFromDiffuseTexture = true;
+    // introCommandesMAT.alpha = 0;
+    // introCommandes.material = introCommandesMAT;
+    // introCommandes.rotation.y = 3.14;
+    // introCommandes.position = new BABYLON.Vector3(1, 5, 75);
 
 
-    var introSouris = BABYLON.MeshBuilder.CreatePlane("introSouris", { height: 5, width: 4, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var introSourisMAT = new BABYLON.StandardMaterial("introSourisMAT", scene);
-    var t = new BABYLON.Texture("img/souris.png", scene, false);
-    t.hasAlpha = true;
-    introSourisMAT.diffuseTexture = t;
-    introSourisMAT.useAlphaFromDiffuseTexture = true;
-    introSourisMAT.alpha = 0;
-    introSouris.material = introSourisMAT;
-    introSouris.rotation.y = 3.14;
-    introSouris.position = new BABYLON.Vector3(-3, 5, 75);
+    // var introSouris = BABYLON.MeshBuilder.CreatePlane("introSouris", { height: 5, width: 4, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    // var introSourisMAT = new BABYLON.StandardMaterial("introSourisMAT", scene);
+    // var t = new BABYLON.Texture("img/souris.png", scene, false);
+    // t.hasAlpha = true;
+    // introSourisMAT.diffuseTexture = t;
+    // introSourisMAT.useAlphaFromDiffuseTexture = true;
+    // introSourisMAT.alpha = 0;
+    // introSouris.material = introSourisMAT;
+    // introSouris.rotation.y = 3.14;
+    // introSouris.position = new BABYLON.Vector3(-3, 5, 75);
 
-    startButton.onclick = function() {
-        videoIntroTexture.video.play();
-        startButtonDiv.style.display = 'none';
-        BABYLON.Engine.audioEngine.useCustomUnlockedButton = true;
-        BABYLON.Engine.audioEngine.unlock();
-        BABYLON.Engine.audioEngine.setGlobalVolume(1);
-        gsap.to(videoIntroMAT, { duration: 1, delay: 41, alpha: 0});
-        gsap.to(introCommandesMAT, { duration: 1, delay: 41, alpha: 1});
-        gsap.to(introSourisMAT, { duration: 1, delay: 41, alpha: 1});
-        gsap.to(introCommandesMAT, { duration: 1, delay: 46, alpha: 0});
-        gsap.to(introSourisMAT, { duration: 1, delay: 46, alpha: 0});
-        gsap.to(introFondMAT, { duration: 1, delay: 46, alpha: 0});
-        gsap.to(camera.position, { duration: 1, delay: 46, x: -1, y: 2, z: 80 });
-        gsap.to(camera.target, {
-            duration: 1, delay: 46, x: 0, y: 0, z: -70, onUpdate: function () {
-                camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-            }
-        });
-        setTimeout(function() {
-            canControl = true;
-        }, 46000);
-    };
+    // startButton.onclick = function() {
+    //     videoIntroTexture.video.play();
+    //     startButtonDiv.style.display = 'none';
+    //     BABYLON.Engine.audioEngine.useCustomUnlockedButton = true;
+    //     BABYLON.Engine.audioEngine.unlock();
+    //     BABYLON.Engine.audioEngine.setGlobalVolume(1);
+    //     gsap.to(videoIntroMAT, { duration: 1, delay: 41, alpha: 0});
+    //     gsap.to(introCommandesMAT, { duration: 1, delay: 41, alpha: 1});
+    //     gsap.to(introSourisMAT, { duration: 1, delay: 41, alpha: 1});
+    //     gsap.to(introCommandesMAT, { duration: 1, delay: 46, alpha: 0});
+    //     gsap.to(introSourisMAT, { duration: 1, delay: 46, alpha: 0});
+    //     gsap.to(introFondMAT, { duration: 1, delay: 46, alpha: 0});
+    //     gsap.to(camera.position, { duration: 1, delay: 46, x: -1, y: 2, z: 80 });
+    //     gsap.to(camera.target, {
+    //         duration: 1, delay: 46, x: 0, y: 0, z: -70, onUpdate: function () {
+    //             camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+    //         }
+    //     });
+    //     setTimeout(function() {
+    //         canControl = true;
+    //     }, 46000);
+    // };
 
 
     //barrières invisibles
@@ -697,14 +697,14 @@ var createScene = function () {
     bruitBlanc.newVolume = 10;
 
     //respiration et son de coeurs
-    var respiration10 = new BABYLON.Sound("respiration10", "sound/respiration_10.mp3", scene, null, {
+    var respiration10 = new BABYLON.Sound("respiration10", "sound/Respiration_10.mp3", scene, null, {
         loop: false,
         autoplay: false,
         maxDistance: 50,
     });
     respiration10.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
 
-    var respiration5 = new BABYLON.Sound("respiration5", "sound/respiration_10.mp3", scene, null, {
+    var respiration5 = new BABYLON.Sound("respiration5", "sound/Respiration_5.mp3", scene, null, {
         loop: false,
         autoplay: false,
         maxDistance: 50,
@@ -770,7 +770,7 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museeV16.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museeV17.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
@@ -950,8 +950,8 @@ var createScene = function () {
                     sonInteraction5.play()
                 }, 500);
                 setTimeout(function() {
-                    coeur_lent_5.play();
-                    respiration_10.play();
+                    coeurLent5.play();
+                    Respiration5.play();
                 }, 1300);
                 gsap.to(oiseau.position, { duration: 1, x: -20, y: 0.05, z: -13, ease: "power3.in" });
                 gsap.to(camera.target, {
@@ -1010,8 +1010,8 @@ var createScene = function () {
                     camera.attachPostProcess(postProcess1);
                 }, 3000);
                 setTimeout(function() {
-                    coeurrapide5.play();
-                    respiration_10.play();
+                    respiration10.play();
+                    coeurLent5.play();
                 }, 3300);
                 gsap.to(camera.position, { duration: 1, x: -2, z: -27 });
                 gsap.to(camera.target, {
@@ -1083,6 +1083,10 @@ var createScene = function () {
                 setTimeout(function () {
                     sonInteraction8.play();
                 }, 1300);
+                setTimeout(function() {
+                    respiration10.play();
+                    coeurRapide5.play();
+                }, 2000);
                 gsap.to(fleche.position, { duration: 1, delay: 1, x: -10.5, y: 4.7, z: -57, ease: "power3.in" });
                 gsap.to(camera.target, {
                     duration: 2, x: -10.5, y: 4.7, z: -57, onUpdate: function () {
@@ -1091,7 +1095,7 @@ var createScene = function () {
                 });
                 canControl = false;
                 setTimeout(() => {
-                    modalGuiText.innerHTML = "Ouf, je l'ai échappée belle..";
+                    modalGuiText.innerHTML = "Ouf, je l'ai échappé belle..";
                 }, 2000);
                 
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
