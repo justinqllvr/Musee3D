@@ -134,3 +134,21 @@ canvas
     from {bottom: -300px; opacity: 0}
     to {bottom: 0; opacity: 1}
 }
+
+.start-button {
+    position: absolute;
+    top: 45vh;
+    left: 45vw;
+}
+
+#start-button {
+    background-color: white;
+    border: none;
+    color: black;
+    font-size: 30px;
+    padding: 10px 15px;
+}
+
+#start-button:hover {
+    cursor: pointer;
+}
