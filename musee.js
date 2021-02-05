@@ -993,6 +993,7 @@ var createScene = function () {
                 }, 6000);
 
                 gsap.to(camera.position, { duration: 1, x: -1, z: -34 });
+                canControl = false;
                 gsap.to(camera.target, {
                     duration: 1, x: -1, y: 4, z: -40, onUpdate: function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
@@ -1002,6 +1003,7 @@ var createScene = function () {
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, delay: 10, opacity: 0, bottom: '-300px' });
+                    canControl = true;
                 }, 5000);
                 setTimeout(() => {
                     sonFille4.play()
