@@ -379,14 +379,11 @@ var createScene = function () {
     videoIntro.rotation.y = 3.14;
     videoIntroTexture.video.autoplay = false;
     videoIntroTexture.video.loop = false;
-
-    startButton.onclick = function() {
-        videoIntroTexture.video.play();
-        startButtonDiv.style.display = 'none';
-        BABYLON.Engine.audioEngine.useCustomUnlockedButton = true;
-        BABYLON.Engine.audioEngine.unlock();
-        BABYLON.Engine.audioEngine.setGlobalVolume(1);
-    };
+    
+    canControl = false;
+    camera.position.y = 5;
+    camera.position.z = 84;
+    camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
 
     var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     var introFondMAT = new BABYLON.StandardMaterial("introFond", scene);
@@ -395,21 +392,24 @@ var createScene = function () {
     introFond.material = introFondMAT;
     introFond.position = new BABYLON.Vector3(-1, 5, 74);
 
-    canControl = false;
-    camera.position.y = 5;
-    camera.position.z = 84;
-    camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
-    gsap.to(introFondMAT, { duration: 1, delay: 45, alpha: 0});
-    gsap.to(videoIntroMAT, { duration: 1, delay: 45, alpha: 0});
-    gsap.to(camera.position, { duration: 1, delay: 45, x: -1, y: 2, z: 80 });
-    gsap.to(camera.target, {
-        duration: 1, delay: 45, x: 0, y: 0, z: -70, onUpdate: function () {
-            camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-        }
-    });
-    setTimeout(function() {
-        canControl = true;
-    }, 40000);
+    startButton.onclick = function() {
+        videoIntroTexture.video.play();
+        startButtonDiv.style.display = 'none';
+        BABYLON.Engine.audioEngine.useCustomUnlockedButton = true;
+        BABYLON.Engine.audioEngine.unlock();
+        BABYLON.Engine.audioEngine.setGlobalVolume(1);
+        gsap.to(introFondMAT, { duration: 1, delay: 41, alpha: 0});
+        gsap.to(videoIntroMAT, { duration: 1, delay: 41, alpha: 0});
+        gsap.to(camera.position, { duration: 1, delay: 43, x: -1, y: 2, z: 80 });
+        gsap.to(camera.target, {
+            duration: 1, delay: 43, x: 0, y: 0, z: -70, onUpdate: function () {
+                camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+            }
+        });
+        setTimeout(function() {
+            canControl = true;
+        }, 40000);
+    };
 
 
     //barrières invisibles
@@ -698,18 +698,18 @@ var createScene = function () {
                 sonInteraction1.play();
                 gsap.to(modalGui, { duration: 1, delay: 0.5, opacity: 1, bottom: 0 });
                 gsap.to(camera.target, {
-                    duration: 1, delay: 0.2, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function () {
+                    duration: 1, delay: 0.2, x: (camera.target.x - 25), y: 3.5, z: (camera.target.z - 25), onUpdate: function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                     }
                 });
                 gsap.to(camera.target, {
-                    duration: 1, delay: 1.2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function () {
+                    duration: 1, delay: 1.2, x: (camera.target.x + 25), y: 3.5, z: (camera.target.z + 25), onUpdate: function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                     }
                 });
-                gsap.to(camera.position, { duration: 2, delay: 5, x: -1, z: 70 });
+                gsap.to(camera.position, { duration: 2, delay: 3, x: -1, z: 70 });
                 gsap.to(camera.target, {
-                    duration: 2, delay: 5, x: -1, y: 3.5, z: 63.8, onUpdate: function () {
+                    duration: 2, delay: 3, x: -1, y: 3.5, z: 63.8, onUpdate: function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                     }
                 });
