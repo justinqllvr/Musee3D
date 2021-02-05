@@ -13,6 +13,10 @@ canvas
     height: 100%;
 }    
 
+canvas:focus {
+    outline: none;
+}
+
 .modal {
     display: none; /* On le cache par défaut */
     position: fixed; /* Sa position sera fixe */
