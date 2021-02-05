@@ -500,13 +500,13 @@ var createScene = function () {
     var IntroInteraction2 = BABYLON.MeshBuilder.CreatePlane("IntroInteraction2", { height: 3, width: 40, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     IntroInteraction2.position = new BABYLON.Vector3(-1, 0.2, 33);
     IntroInteraction2.rotation.y = 0.8;
-    invisibleMat.alpha = 0.2;
+    invisibleMat.alpha = 0;
     IntroInteraction2.material = invisibleMat;
     
     var zoneRetourInteraction2 = BABYLON.MeshBuilder.CreatePlane("zoneRetourInteraction2", { height: 3, width: 5, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneRetourInteraction2.position = new BABYLON.Vector3(-1, 0.2, 22);
     zoneRetourInteraction2.rotation.y = 3.14;
-    invisibleMat.alpha = 0.5;
+    invisibleMat.alpha = 0;
     zoneRetourInteraction2.material = invisibleMat;
 
     sonInteraction1.attachToMesh(fransHals);
@@ -601,22 +601,6 @@ var createScene = function () {
 
     // sonInteraction7.attachToMesh(bakhuizen);
 
-    //Interaction 9 -  Ganymède
-    var zoneInteraction9 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 15, scene);
-    zoneInteraction9.material = zoneInteraction2MAT;
-    zoneInteraction9.position = new BABYLON.Vector3(-1, 0, -80);
-
-    var videoGanymede = BABYLON.MeshBuilder.CreatePlane("videoVenus", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var videoGanymedeTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/Venus_v2.mp4"], scene, false);
-    var videoGanymedeMAT = new BABYLON.StandardMaterial("videoGanymedeMAT", scene);
-    videoGanymedeMAT.diffuseTexture = videoGanymedeTexture;
-    videoGanymedeMAT.backFaceCulling = false;
-    videoGanymedeMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
-    videoGanymedeMAT.specularColor = new BABYLON.Color3(0, 0, 0);
-    videoGanymede.material = videoGanymedeMAT;
-    videoGanymede.position = new BABYLON.Vector3(-1, 5, 150);
-    videoGanymedeTexture.video.pause();
-
     // Interaction 8 - Fleche
     var zoneInteraction8 = BABYLON.MeshBuilder.CreatePlane("zoneInteraction8", { height: 20, width: 15, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     zoneInteraction8.position = new BABYLON.Vector3(-7, 0.2, -59);
@@ -634,6 +618,46 @@ var createScene = function () {
     flecheMAT.useAlphaFromDiffuseTexture = true;
     flecheMAT.backFaceCulling = false;
     fleche.material = flecheMAT;
+
+    //Interaction 9 -  Ganymède
+    var zoneInteraction9 = BABYLON.Mesh.CreateSphere("musicsphere", 22, 15, scene);
+    zoneInteraction9.material = zoneInteraction2MAT;
+    zoneInteraction9.position = new BABYLON.Vector3(-1, 0, -80);
+
+    var videoGanymede = BABYLON.MeshBuilder.CreatePlane("videoGanymede", { height: 11, width: 21, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoGanymedeTexture = new BABYLON.VideoTexture("videoGanymedeTexture", ["texture/video/Ganymède2.mp4"], scene, false);
+    var videoGanymedeMAT = new BABYLON.StandardMaterial("videoGanymedeMAT", scene);
+    videoGanymedeMAT.diffuseTexture = videoGanymedeTexture;
+    videoGanymedeMAT.backFaceCulling = false;
+    videoGanymedeMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoGanymedeMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoGanymede.material = videoGanymedeMAT;
+    videoGanymede.rotation.y = 3.14;
+    videoGanymede.position = new BABYLON.Vector3(-1.3, 5.5, 150);
+    videoGanymedeTexture.video.pause();
+
+    // Dernière vidéo
+    var videoOutro = BABYLON.MeshBuilder.CreatePlane("videoOutro", { height: 6.54, width: 11.63, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoOutroTexture = new BABYLON.VideoTexture("videoOutroTexture", ["texture/video/hD.mp4"], scene, false);
+    var videoOutroMAT = new BABYLON.StandardMaterial("videoOutroMAT", scene);
+    videoOutroMAT.diffuseTexture = videoOutroTexture;
+    videoOutroMAT.backFaceCulling = false;
+    videoOutroMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoOutroMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoOutro.material = videoOutroMAT;
+    videoOutro.rotation.y = 3.14;
+    videoOutro.position = new BABYLON.Vector3(-1.3, 4.5, 150);
+    videoOutroTexture.video.loop = false;
+    videoOutroTexture.video.pause();
+
+    var outroFond = BABYLON.MeshBuilder.CreatePlane("outroFond", { height: 10, width: 50, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var outroFondMAT = new BABYLON.StandardMaterial("outroFondMAT", scene);
+    outroFondMAT.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    outroFondMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    outroFondMAT.alpha = 0;
+    outroFond.material = outroFondMAT;
+    outroFond.position = new BABYLON.Vector3(-1, 5, -91);
+
 
 
 
@@ -803,9 +827,6 @@ var createScene = function () {
                 canControl = false;
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
-                }, 7000);
-                setTimeout(function () {
-                    canControl = true;
                 }, 7000);
                 setTimeout(function () {
                     canControl = true;
@@ -1013,12 +1034,12 @@ var createScene = function () {
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, delay: 10, opacity: 0, bottom: '-300px' });
-                    canControl = true;
                 }, 5000);
                 setTimeout(() => {
                     sonFille4.play()
                 }, 5500);
                 setTimeout(() => {
+                    canControl = true;
                     modalGuiText.innerHTML = "Emma ce n'est plus drôle, revient !";
                 }, 7500);
             }
@@ -1081,6 +1102,19 @@ var createScene = function () {
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
+
+                setTimeout(function() {
+                    canControl = false;
+                    videoOutro.position.z = -90;
+                    videoOutroTexture.video.play();
+                }, 6000);
+                gsap.to(outroFondMAT, { duration: 1, alpha: 1, delay: 6})
+                gsap.to(camera.position, { duration: 1, delay: 6, x: -1.3, y: 4.5, z: -81 });
+                gsap.to(camera.target, {
+                    duration: 1, delay: 6, x: -1.3, y: 4.5, z: -90, onUpdate: function () {
+                        camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                    }
+                });
             }
 
 
