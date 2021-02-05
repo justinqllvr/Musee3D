@@ -623,7 +623,7 @@ var createScene = function () {
         spatialSound: true,
     });
     sonFille1.position = new BABYLON.Vector3(-30, 0.2, 60);
-    
+    //son 2
     var sonFille2 = new BABYLON.Sound("sonFille1", "sound/papa_vient_voir__.mp3", scene, null, {
         loop: false,
         autoplay: false,
@@ -631,6 +631,14 @@ var createScene = function () {
         spatialSound: true,
     });
     sonFille2.position = new BABYLON.Vector3(6, 0.2, 10);
+    //son 3
+    var sonFille3 = new BABYLON.Sound("sonFille1", "sound/papa_ou_es_tu_.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 80,
+        spatialSound: true,
+    });
+    sonFille3.attachToMesh(bakhuizen);
 
 
 
@@ -665,12 +673,12 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "musee.babylon");
+    var salle = loader.addMeshTask("nom", "", "obj/", "museeV16.obj");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
-            m.position.x = -3; //Et on le décale un peu pour que quand on commence, il soit bien placé.
-            m.rotation.z = -3.14;
+            m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
+            // m.rotation.z = -3.14;
             m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
         });
     };
@@ -857,10 +865,12 @@ var createScene = function () {
                 modalGuiText.innerHTML = "Comment cet oiseau est-il arrivé ici ?";
                 gsap.to(modalGui, { duration: 1, delay: 3, opacity: 1, bottom: 0 });
                 setTimeout(function () {
-                    gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
+                    gsap.to(modalGui, { duration: 1,delay: 3, opacity: 0, bottom: '-300px' });
                 }, 7000);
                 setTimeout(function () {
                     canControl = true;
+                    sonFille3.play();
+                    modalGuiText.innerHTML = "Emma ?";
                 }, 7000);
             }
 
