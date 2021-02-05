@@ -31,12 +31,12 @@ var createScene = function () {
     //Paramètres : string nom, int longueur (axe x), int largeur (axe z), int sous-divisions, scene
     var ground = BABYLON.Mesh.CreateGround("ground1", 250, 250, 2, scene); //On crée un sol (petit certes) qui servira plus tard
     var mat_sol = new BABYLON.StandardMaterial("sol", scene);
-    mat_sol.diffuseTexture = new BABYLON.Texture("texture/sol.jpg", scene);
-    mat_sol.bumpTexture = new BABYLON.Texture("texture/sol_bump.jpg", scene);
-    mat_sol.diffuseTexture.uScale = 16.0 * 1.5;
-    mat_sol.diffuseTexture.vScale = 16.0;
-    mat_sol.bumpTexture.uScale = 16.0 * 1.5;
-    mat_sol.bumpTexture.vScale = 16.0;
+    mat_sol.diffuseTexture = new BABYLON.Texture("texture/marbre.jpg", scene);
+    mat_sol.bumpTexture = new BABYLON.Texture("texture/marbre.jpg", scene);
+    mat_sol.diffuseTexture.uScale = 50.0 * 1.5;
+    mat_sol.diffuseTexture.vScale = 50.0;
+    mat_sol.bumpTexture.uScale = 50.0 * 1.5;
+    mat_sol.bumpTexture.vScale = 50.0;
     ground.checkCollisions = true;
     ground.material = mat_sol;
 
@@ -588,6 +588,24 @@ var createScene = function () {
     });
     sonInteraction8.attachToMesh(fleche);
 
+    //Les sons de la petite fille 
+    //son 1
+    var sonFille1 = new BABYLON.Sound("sonFille1", "sound/papa_vient_voir__.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 75,
+        spatialSound: true,
+    });
+    sonFille1.position = new BABYLON.Vector3(-30, 0.2, 60);
+    
+    var sonFille2 = new BABYLON.Sound("sonFille1", "sound/papa_vient_voir__.mp3", scene, null, {
+        loop: false,
+        autoplay: false,
+        maxDistance: 80,
+        spatialSound: true,
+    });
+    sonFille2.position = new BABYLON.Vector3(6, 0.2, 10);
+
 
 
     var islocked = false;
@@ -621,11 +639,12 @@ var createScene = function () {
     };
 
     var loader = new BABYLON.AssetsManager(scene);
-    var salle = loader.addMeshTask("nom", "", "obj/", "museeV15.obj");
+    var salle = loader.addMeshTask("nom", "", "obj/", "musee.babylon");
     salle.onSuccess = function (t) {
         t.loadedMeshes.forEach(function (m) { //On édite ici chaque maillage de l'objet
             m.position.y = 0; //Pour le monter en hauteur
-            m.position.x = 0; //Et on le décale un peu pour que quand on commence, il soit bien placé.
+            m.position.x = -3; //Et on le décale un peu pour que quand on commence, il soit bien placé.
+            m.rotation.z = -3.14;
             m.checkCollisions = true; //Ajout de la détection des collisions, expliqué plus tard.
         });
     };
@@ -650,7 +669,10 @@ var createScene = function () {
     // var vecteurFlouHorizontal =  new BABYLON.Vector2(1.0, 0)
     // var postProcess0 = new BABYLON.BlurPostProcess("Horizontal blur", new BABYLON.Vector2(1.0, 0), 32, 1.0, camera);
     // var postProcess1 = new BABYLON.BlurPostProcess("Vertical blur", new BABYLON.Vector2(0, 1.0), 32, 1.0, camera);
-
+    var postProcess0 = new BABYLON.BlurPostProcess("Horizontal blur", new BABYLON.Vector2(1.0, 0), 32, 1.0, camera);
+    var postProcess1 = new BABYLON.BlurPostProcess("Vertical blur", new BABYLON.Vector2(0, 1.0), 32, 1.0, camera);
+    camera.detachPostProcess(postProcess0);
+    camera.detachPostProcess(postProcess1);
 
 
     loader.onFinish = function () {
@@ -694,6 +716,10 @@ var createScene = function () {
                 setTimeout(function () {
                     canControl = true;
                 }, 7000);
+                setTimeout(function () {
+                    canControl = true;
+                    sonFille1.play();
+                }, 10000);
             }
 
 
@@ -703,10 +729,12 @@ var createScene = function () {
                 stopPlayLuthSoundCounter++;
             } else if (stopSoundLuth && stopPlayLuthSoundCounter == 1) {
                 zoneInteraction2.position.y = 500;
-                sonInteraction2.stop();
+                setTimeout(function () {
+                    sonInteraction2.stop();
+                    sonInteraction2.autoplay = false;
+                    sonInteraction2.loop = false;
+                }, 5000);
                 zoneBarriere1.position.x = 150;
-                sonInteraction2.autoplay = false;
-                sonInteraction2.loop = false;
                 gsap.to(camera.position, { duration: 1, x: -20, z: 32.5 });
                 gsap.to(camera.target, {
                     duration: 1, x: -13.7, y: 3.5, z: 32.5, onUpdate: function () {
@@ -718,6 +746,9 @@ var createScene = function () {
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
                 }, 5000);
+                setTimeout(function () {
+                    sonFille2.play();
+                }, 7000);
             }
 
             textLuth = hitbox.intersectsMesh(IntroInteraction2, false);
@@ -815,8 +846,8 @@ var createScene = function () {
                 textTempeteCounter++;
             } else if (textTempete && textTempeteCounter == 1) {
                 IntroInteraction6.position.y = 500;
-                var postProcess0 = new BABYLON.BlurPostProcess("Horizontal blur", new BABYLON.Vector2(1.0, 0), 32, 1.0, camera);
-                var postProcess1 = new BABYLON.BlurPostProcess("Vertical blur", new BABYLON.Vector2(0, 1.0), 32, 1.0, camera);
+                camera.attachPostProcess(postProcess0);
+                camera.attachPostProcess(postProcess1);
                 modalGuiText.innerHTML = "Je ... Mais que m'arrive-t-il ?";
 
                 gsap.to(modalGui, { duration: 1, delay: 0, opacity: 1, bottom: 0 });
@@ -832,8 +863,8 @@ var createScene = function () {
                 zoneInteraction6.position.y = 500;
                 zoneBarriere3.position.x = 150;
                 setTimeout(() => {
-                    postProcess0.alphaMode = BABYLON.Engine.ALPHA_COMBINE;
-                    postProcess1.alphaMode = BABYLON.Engine.ALPHA_COMBINE
+                    camera.detachPostProcess(postProcess0);
+                    camera.detachPostProcess(postProcess1);
                     console.log(postProcess0);
                     console.log(postProcess1);
                     sonInteraction6.stop();
