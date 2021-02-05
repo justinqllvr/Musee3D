@@ -16,6 +16,8 @@ var createScene = function () {
     camera.attachControl(canvas, false);
     camera.position = new BABYLON.Vector3(-1, 2, 80);
 
+    BABYLON.Engine.audioEngine.setGlobalVolume(0);
+
 
 
 
@@ -361,6 +363,9 @@ var createScene = function () {
 
 
 
+    var startButton = document.getElementById('start-button');
+    var startButtonDiv = document.getElementsByClassName('start-button')[0];
+
     // Vidéo d'introduction
     var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/V2.mp4"], scene, false);
@@ -372,8 +377,14 @@ var createScene = function () {
     videoIntro.material = videoIntroMAT;
     videoIntro.position = new BABYLON.Vector3(-1, 5, 75);
     videoIntro.rotation.y = 3.14;
-    videoIntroTexture.video.autoplay = true;
+    videoIntroTexture.video.autoplay = false;
     videoIntroTexture.video.loop = false;
+
+    startButton.onclick = function() {
+        videoIntroTexture.video.play();
+        startButtonDiv.style.display = 'none';
+        BABYLON.Engine.audioEngine.setGlobalVolume(1);
+    };
 
     var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 20, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
     var introFondMAT = new BABYLON.StandardMaterial("introFond", scene);
@@ -477,10 +488,13 @@ var createScene = function () {
     zoneInteraction3.material = invisibleMat;
 
     var potDeFleurs = BABYLON.MeshBuilder.CreatePlane("potDeFleurs", { height: 5, width: 1.5, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    potDeFleurs.position = new BABYLON.Vector3(5, 2.5, 5.1);
+    potDeFleurs.position = new BABYLON.Vector3(5, 2.4, 5.1);
     potDeFleurs.rotation.y = 3.14;
     var potDeFleursMAT = new BABYLON.StandardMaterial("potDeFleursMAT", scene);
-    potDeFleursMAT.diffuseTexture = new BABYLON.Texture("texture/objects/pot.png", scene, false);
+    var t = new BABYLON.Texture("texture/objects/pot.png", scene, false);
+    t.hasAlpha= true;
+    potDeFleursMAT.diffuseTexture = t;
+    potDeFleursMAT.useAlphaFromDiffuseTexture = true;
     potDeFleurs.material = potDeFleursMAT;
 
 
@@ -505,8 +519,13 @@ var createScene = function () {
     oiseau.rotation.x = 1.57;
     oiseau.rotation.y = -1.57;
     var oiseauMAT = new BABYLON.StandardMaterial("oiseauMAT", scene);
-    oiseauMAT.diffuseTexture = new BABYLON.Texture("texture/objects/oiseau.png", scene, false);
+    var t = new BABYLON.Texture("texture/objects/oiseau.png", scene, false);
+    t.hasAlpha = true;
+    oiseauMAT.diffuseTexture = t;
+    oiseauMAT.useAlphaFromDiffuseTexture = true;
     oiseau.material = oiseauMAT;
+
+
 
     var sonInteraction5 = new BABYLON.Sound("sonInteraction5", "sound/Chute_pigeon.mp3", scene, null, {
         loop: false,
@@ -577,9 +596,14 @@ var createScene = function () {
     fleche.rotation.x = -1.57;
     fleche.rotation.z = 1.57;
     var flecheMAT = new BABYLON.StandardMaterial("flecheMAT", scene);
-    flecheMAT.diffuseTexture = new BABYLON.Texture("texture/objects/fleche.png", scene, false);
+    var t = new BABYLON.Texture("texture/objects/fleche.png", scene, false);
+    t.hasAlpha = true;
+    flecheMAT.diffuseTexture = t;
+    flecheMAT.useAlphaFromDiffuseTexture = true;
     flecheMAT.backFaceCulling = false;
     fleche.material = flecheMAT;
+
+
 
     var sonInteraction8 = new BABYLON.Sound("sonInteraction8", "sound/Fleche_lent.mp3", scene, null, {
         loop: false,
