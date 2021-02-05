@@ -663,6 +663,16 @@ var createScene = function () {
         spatialSound: true,
     });
     sonFille5.attachToMesh(pierrePaulRubens);
+    
+    //bruit blanc
+    var bruitBlanc = new BABYLON.Sound("bruitBlanc", "sound/Bruit_blanc.mp3", scene, null, {
+        loop: true,
+        autoplay: true,
+        maxDistance: 50,
+        spatialSound: false,
+    });
+    bruitBlanc.position = new BABYLON.Vector3(camera.position.x, camera.position.y, camera.position.z);
+    bruitBlanc.newVolume = 10;
 
 
 
@@ -946,7 +956,7 @@ var createScene = function () {
                 modalGuiText.innerHTML = "Le tableau !!!?";
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
-                    gsap.to(modalGui, { duration: 1, delay: 10, opacity: 0, bottom: '-300px' });
+                    gsap.to(modalGui, { duration: 1, delay: 7, opacity: 0, bottom: '-300px' });
                 }, 5000);
                 setTimeout(() => {
                     sonFille4.play()
@@ -972,7 +982,10 @@ var createScene = function () {
                     }
                 });
                 canControl = false;
-                modalGuiText.innerHTML = "Ouf, je l'ai échappée belle..";
+                setTimeout(() => {
+                    modalGuiText.innerHTML = "Ouf, je l'ai échappée belle..";
+                }, 2000);
+                
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     canControl = true;
