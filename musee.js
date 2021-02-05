@@ -383,6 +383,8 @@ var createScene = function () {
     startButton.onclick = function() {
         videoIntroTexture.video.play();
         startButtonDiv.style.display = 'none';
+        BABYLON.Engine.audioEngine.useCustomUnlockedButton = true;
+        BABYLON.Engine.audioEngine.unlock();
         BABYLON.Engine.audioEngine.setGlobalVolume(1);
     };
 
@@ -397,11 +399,11 @@ var createScene = function () {
     camera.position.y = 5;
     camera.position.z = 84;
     camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
-    gsap.to(introFondMAT, { duration: 1, delay: 40, alpha: 0});
-    gsap.to(videoIntroMAT, { duration: 1, delay: 40, alpha: 0});
-    gsap.to(camera.position, { duration: 1, delay: 40, x: -1, y: 2, z: 80 });
+    gsap.to(introFondMAT, { duration: 1, delay: 45, alpha: 0});
+    gsap.to(videoIntroMAT, { duration: 1, delay: 45, alpha: 0});
+    gsap.to(camera.position, { duration: 1, delay: 45, x: -1, y: 2, z: 80 });
     gsap.to(camera.target, {
-        duration: 1, delay: 40, x: 0, y: 0, z: -70, onUpdate: function () {
+        duration: 1, delay: 45, x: 0, y: 0, z: -70, onUpdate: function () {
             camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
         }
     });
@@ -694,14 +696,14 @@ var createScene = function () {
             } else if (canPlaySound && canPlaySoundCounter == 1) {
                 zoneInteraction1.position.y = 50;
                 sonInteraction1.play();
-                gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
+                gsap.to(modalGui, { duration: 1, delay: 0.5, opacity: 1, bottom: 0 });
                 gsap.to(camera.target, {
-                    duration: 1, delay: 1, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function () {
+                    duration: 1, delay: 0.2, x: (camera.target.x - 20), y: 3.5, z: (camera.target.z - 20), onUpdate: function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                     }
                 });
                 gsap.to(camera.target, {
-                    duration: 1, delay: 2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function () {
+                    duration: 1, delay: 1.2, x: (camera.target.x + 20), y: 3.5, z: (camera.target.z + 20), onUpdate: function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                     }
                 });
