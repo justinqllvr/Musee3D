@@ -367,8 +367,8 @@ var createScene = function () {
     var startButtonDiv = document.getElementsByClassName('start-button')[0];
 
     // Vidéo d'introduction
-    var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 7.8, width: 11.76, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/V2.mp4"], scene, false);
+    var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 6.54, width: 11.63, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v3.mp4"], scene, false);
     var videoIntroMAT = new BABYLON.StandardMaterial("mat", scene);
     videoIntroMAT.diffuseTexture = videoIntroTexture;
     videoIntroMAT.backFaceCulling = false;
