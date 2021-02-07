@@ -925,7 +925,7 @@ var createScene = function () {
                 zoneRetourInteraction2Counter++;
             } else if (retourLuth && zoneRetourInteraction2Counter == 1) {
                 zoneRetourInteraction2.position.y = 500;
-                modalGuiText.innerHTML = "Ça ne doit pas venir de là-bas, cherchons dans cette pièce.";
+                modalGuiText.innerHTML = "Ça ne doit pas venir de là-bas, cherchons plutôt dans cette pièce.";
                 gsap.to(modalGui, { duration: 1, delay: 0, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, opacity: 0, bottom: '-300px' });
@@ -1041,11 +1041,11 @@ var createScene = function () {
                     }
                 });
                 canControl = false;
-                modalGuiText.innerHTML = "Non... serais-ce ce que je pense ?!";
+                modalGuiText.innerHTML = "Non... serait-ce ce que je pense ?!";
                 gsap.to(modalGui, { duration: 1, delay: 1, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1,delay: 10, opacity: 0, bottom: '-300px' });
-                    modalGuiText.innerHTML = "Ca recommence, je le savais !";
+                    modalGuiText.innerHTML = "Ça recommence, je le savais !";
                     canControl = true;
                 }, 5000);
                 setTimeout(() => {
@@ -1081,7 +1081,7 @@ var createScene = function () {
                         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
                     }
                 });
-                modalGuiText.innerHTML = "Le tableau !!!?";
+                modalGuiText.innerHTML = "Le tableau !?";
                 gsap.to(modalGui, { duration: 1, delay: 2, opacity: 1, bottom: 0 });
                 setTimeout(function () {
                     gsap.to(modalGui, { duration: 1, delay: 10, opacity: 0, bottom: '-300px' });

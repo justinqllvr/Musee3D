@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'augustus';
-    src: url('Assets/AUGUSTUS.TTF') format('ttf'),
+    font-family: "Augustus";
+    src: url("../assets/AUGUSTUS.TTF");
 }
 
 @font-face {
-    font-family: 'ebrima';
-    src: url('Assets/ebrima.ttf') format('ttf'),
+    font-family: "Ebrima";
+    src: url("../assets/ebrima.ttf");
 }
 
 h2 {
@@ -19,7 +19,7 @@ p{
 }
 
 h2, span, li{
-    font-family: 'ebrima';
+    font-family: 'Ebrima';
     font-weight: normal;
 }
 
