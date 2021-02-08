@@ -18,23 +18,22 @@ canvas:focus {
 }
 
 .modal {
-    display: none; /* On le cache par défaut */
-    position: fixed; /* Sa position sera fixe */
-    z-index: 1; /* Et en première position */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%; 
     height: 100%; 
     overflow: auto;
-    background-color: rgb(0,0,0); /* La couleur d'arrière-plan... */
-    background-color: rgba(0,0,0,0.4); /* ...avec de la transparence si supporté par le navigateur */
-    -webkit-animation-name: fadeIn; /* Et on lance l'animation (voir ci-dessous) */
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    -webkit-animation-name: fadeIn;
     -webkit-animation-duration: 0.4s;
     animation-name: fadeIn;
     animation-duration: 0.4s
 }
 
-/* Modal Content */
 .modal-content {
     position: fixed;
     top: 30%;
@@ -48,7 +47,6 @@ canvas:focus {
     font-family: "Arial";
 }
 
-/* The Close Button */
 .close {
     color: white;
     float: right;
@@ -77,7 +75,6 @@ canvas:focus {
     color: white;
 }
 
-/* Add Animation */
 @-webkit-keyframes slideIn {
     from {margin-top: 2000px; opacity: 0} 
     to {margin-top: 0px; opacity: 1}
@@ -98,22 +95,20 @@ canvas:focus {
     to {opacity: 1}
 }
 
-/* Modal bis*/
 .modalgui {
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: block;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    overflow: auto; /* Enable scroll if needed */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
+    width: 100%;
+    overflow: auto;
+    -webkit-animation-name: fadeIn;
     -webkit-animation-duration: 0.4s;
     animation-name: fadeIn;
     animation-duration: 0.4s
 }
 
-/* Modal Content */
 #modalgui-content {
     position: fixed;
     bottom: -300px;
@@ -128,7 +123,6 @@ canvas:focus {
     font-family: 'Arial'; 
 }
 
-/* Add Animation */
 @-webkit-keyframes slideInInteraction {
     from {bottom: -300px; opacity: 0} 
     to {bottom: 0; opacity: 1}
@@ -145,7 +139,19 @@ canvas:focus {
     left: 45vw;
 }
 
-#start-button {
+.end-button {
+    position: absolute;
+    top: 25vh;
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    display: none;
+}
+
+#start-button, #menu-button, #free-button {
     background-color: white;
     border: none;
     color: black;
@@ -153,6 +159,6 @@ canvas:focus {
     padding: 10px 15px;
 }
 
-#start-button:hover {
+#start-button:hover, #menu-button:hover, #free-button:hover {
     cursor: pointer;
 }
