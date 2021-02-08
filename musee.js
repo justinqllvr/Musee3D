@@ -371,75 +371,75 @@ var createScene = function () {
     var startButtonDiv = document.getElementsByClassName('start-button')[0];
 
     // Vidéo d'introduction
-    // var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 6.54, width: 11.63, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    // var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v3.mp4"], scene, false);
-    // var videoIntroMAT = new BABYLON.StandardMaterial("mat", scene);
-    // videoIntroMAT.diffuseTexture = videoIntroTexture;
-    // videoIntroMAT.backFaceCulling = false;
-    // videoIntroMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
-    // videoIntroMAT.specularColor = new BABYLON.Color3(0, 0, 0);
-    // videoIntro.material = videoIntroMAT;
-    // videoIntro.position = new BABYLON.Vector3(-1, 5, 75);
-    // videoIntro.rotation.y = 3.14;
-    // videoIntroTexture.video.autoplay = false;
-    // videoIntroTexture.video.loop = false;
+    var videoIntro = BABYLON.MeshBuilder.CreatePlane("videoIntro", { height: 6.54, width: 11.63, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var videoIntroTexture = new BABYLON.VideoTexture("videosFac", ["texture/video/v3.mp4"], scene, false);
+    var videoIntroMAT = new BABYLON.StandardMaterial("mat", scene);
+    videoIntroMAT.diffuseTexture = videoIntroTexture;
+    videoIntroMAT.backFaceCulling = false;
+    videoIntroMAT.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    videoIntroMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    videoIntro.material = videoIntroMAT;
+    videoIntro.position = new BABYLON.Vector3(-1, 5, 75);
+    videoIntro.rotation.y = 3.14;
+    videoIntroTexture.video.autoplay = false;
+    videoIntroTexture.video.loop = false;
     
-    // canControl = false;
-    // camera.position.y = 5;
-    // camera.position.z = 84;
-    // camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
+    canControl = false;
+    camera.position.y = 5;
+    camera.position.z = 84;
+    camera.setTarget(new BABYLON.Vector3(-1, 5, 75));
 
-    // var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 50, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    // var introFondMAT = new BABYLON.StandardMaterial("introFondMAT", scene);
-    // introFondMAT.diffuseColor = new BABYLON.Color3(0, 0, 0);
-    // introFondMAT.specularColor = new BABYLON.Color3(0, 0, 0);
-    // introFond.material = introFondMAT;
-    // introFond.position = new BABYLON.Vector3(-1, 5, 74);
+    var introFond = BABYLON.MeshBuilder.CreatePlane("introFond", { height: 10, width: 50, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var introFondMAT = new BABYLON.StandardMaterial("introFondMAT", scene);
+    introFondMAT.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    introFondMAT.specularColor = new BABYLON.Color3(0, 0, 0);
+    introFond.material = introFondMAT;
+    introFond.position = new BABYLON.Vector3(-1, 5, 74);
 
-    // var introCommandes = BABYLON.MeshBuilder.CreatePlane("introCommandes", { height: 5, width: 5, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    // var introCommandesMAT = new BABYLON.StandardMaterial("introCommandesMAT", scene);
-    // var t = new BABYLON.Texture("img/commandes.png", scene, false);
-    // t.hasAlpha = true;
-    // introCommandesMAT.diffuseTexture = t;
-    // introCommandesMAT.useAlphaFromDiffuseTexture = true;
-    // introCommandesMAT.alpha = 0;
-    // introCommandes.material = introCommandesMAT;
-    // introCommandes.rotation.y = 3.14;
-    // introCommandes.position = new BABYLON.Vector3(1, 5, 75);
+    var introCommandes = BABYLON.MeshBuilder.CreatePlane("introCommandes", { height: 5, width: 5, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var introCommandesMAT = new BABYLON.StandardMaterial("introCommandesMAT", scene);
+    var t = new BABYLON.Texture("img/commandes.png", scene, false);
+    t.hasAlpha = true;
+    introCommandesMAT.diffuseTexture = t;
+    introCommandesMAT.useAlphaFromDiffuseTexture = true;
+    introCommandesMAT.alpha = 0;
+    introCommandes.material = introCommandesMAT;
+    introCommandes.rotation.y = 3.14;
+    introCommandes.position = new BABYLON.Vector3(1, 5, 75);
 
 
-    // var introSouris = BABYLON.MeshBuilder.CreatePlane("introSouris", { height: 5, width: 4, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    // var introSourisMAT = new BABYLON.StandardMaterial("introSourisMAT", scene);
-    // var t = new BABYLON.Texture("img/souris.png", scene, false);
-    // t.hasAlpha = true;
-    // introSourisMAT.diffuseTexture = t;
-    // introSourisMAT.useAlphaFromDiffuseTexture = true;
-    // introSourisMAT.alpha = 0;
-    // introSouris.material = introSourisMAT;
-    // introSouris.rotation.y = 3.14;
-    // introSouris.position = new BABYLON.Vector3(-3, 5, 75);
+    var introSouris = BABYLON.MeshBuilder.CreatePlane("introSouris", { height: 5, width: 4, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    var introSourisMAT = new BABYLON.StandardMaterial("introSourisMAT", scene);
+    var t = new BABYLON.Texture("img/souris.png", scene, false);
+    t.hasAlpha = true;
+    introSourisMAT.diffuseTexture = t;
+    introSourisMAT.useAlphaFromDiffuseTexture = true;
+    introSourisMAT.alpha = 0;
+    introSouris.material = introSourisMAT;
+    introSouris.rotation.y = 3.14;
+    introSouris.position = new BABYLON.Vector3(-3, 5, 75);
 
     startButton.onclick = function() {
-        // videoIntroTexture.video.play();
+        videoIntroTexture.video.play();
         startButtonDiv.style.display = 'none';
         BABYLON.Engine.audioEngine.useCustomUnlockedButton = true;
         BABYLON.Engine.audioEngine.unlock();
         BABYLON.Engine.audioEngine.setGlobalVolume(1);
-        // gsap.to(videoIntroMAT, { duration: 1, delay: 41, alpha: 0});
-        // gsap.to(introCommandesMAT, { duration: 1, delay: 41, alpha: 1});
-        // gsap.to(introSourisMAT, { duration: 1, delay: 41, alpha: 1});
-        // gsap.to(introCommandesMAT, { duration: 1, delay: 46, alpha: 0});
-        // gsap.to(introSourisMAT, { duration: 1, delay: 46, alpha: 0});
-        // gsap.to(introFondMAT, { duration: 1, delay: 46, alpha: 0});
-        // gsap.to(camera.position, { duration: 1, delay: 46, x: -1, y: 2, z: 80 });
-        // gsap.to(camera.target, {
-        //     duration: 1, delay: 46, x: 0, y: 0, z: -70, onUpdate: function () {
-        //         camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
-        //     }
-        // });
-        // setTimeout(function() {
+        gsap.to(videoIntroMAT, { duration: 1, delay: 41, alpha: 0});
+        gsap.to(introCommandesMAT, { duration: 1, delay: 41, alpha: 1});
+        gsap.to(introSourisMAT, { duration: 1, delay: 41, alpha: 1});
+        gsap.to(introCommandesMAT, { duration: 1, delay: 46, alpha: 0});
+        gsap.to(introSourisMAT, { duration: 1, delay: 46, alpha: 0});
+        gsap.to(introFondMAT, { duration: 1, delay: 46, alpha: 0});
+        gsap.to(camera.position, { duration: 1, delay: 46, x: -1, y: 2, z: 80 });
+        gsap.to(camera.target, {
+            duration: 1, delay: 46, x: 0, y: 0, z: -70, onUpdate: function () {
+                camera.setTarget(new BABYLON.Vector3(camera.target.x, camera.target.y, camera.target.z));
+            }
+        });
+        setTimeout(function() {
             canControl = true;
-        // }, 46000);
+        }, 46000);
     };
 
 
@@ -647,6 +647,16 @@ var createScene = function () {
     videoGanymede.rotation.y = 3.14;
     videoGanymede.position = new BABYLON.Vector3(-1.3, 5.5, -92.7);
     videoGanymedeTexture.video.pause();
+
+    var emma = BABYLON.MeshBuilder.CreatePlane("emma", { height: 2, width: 0.7, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
+    emma.position = new BABYLON.Vector3(-3, 1, -85);
+    emma.rotation.y = 3.14;
+    var emmaMAT = new BABYLON.StandardMaterial("emmaMAT", scene);
+    var t = new BABYLON.Texture("texture/objects/emma.png", scene, false);
+    t.hasAlpha= true;
+    emmaMAT.diffuseTexture = t;
+    emmaMAT.useAlphaFromDiffuseTexture = true;
+    emma.material = emmaMAT;
 
     // Dernière vidéo
     var videoOutro = BABYLON.MeshBuilder.CreatePlane("videoOutro", { height: 6.54, width: 11.63, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
