@@ -649,7 +649,7 @@ var createScene = function () {
     videoGanymedeTexture.video.pause();
 
     var emma = BABYLON.MeshBuilder.CreatePlane("emma", { height: 2, width: 0.7, sideOrientation: BABYLON.Mesh.DOUBLESIDE }, scene);
-    emma.position = new BABYLON.Vector3(-3, 1, -85);
+    emma.position = new BABYLON.Vector3(-3, 0.9, -85);
     emma.rotation.y = 3.14;
     var emmaMAT = new BABYLON.StandardMaterial("emmaMAT", scene);
     var t = new BABYLON.Texture("texture/objects/emma.png", scene, false);
@@ -1235,6 +1235,7 @@ var createScene = function () {
                 }});
                 setTimeout(function() {
                     endButtonDiv.style.display = 'flex';
+                    camera.detachControl(canvas);
                 }, 59000);
             }
 
@@ -1243,6 +1244,7 @@ var createScene = function () {
             };
 
             freeButton.onclick = function() {
+                camera.attachControl(canvas, false);
                 canControl = true;
                 gsap.to(outroFondMAT, { duration: 1, alpha: 0})
                 gsap.to(videoOutroMAT, { duration: 1, alpha: 0});
