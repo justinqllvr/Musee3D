@@ -1132,7 +1132,7 @@ var createScene = function () {
                 }, 6500);
                 setTimeout(() => {
                     canControl = true;
-                    modalGuiText.innerHTML = "Emma ce n'est plus drôle, revient !";
+                    modalGuiText.innerHTML = "Emma ce n'est plus drôle, reviens !";
                 }, 7500);
             }
 
